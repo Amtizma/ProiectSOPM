@@ -1,16 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import LoginSignup from './LoginSignup'; // Importul noii componente
 
-const TopBar = () => {
+const App = () => {
   return (
-    <div className="top-bar">
-      <div className="buttons">
-        <button className="button">Automation</button>
-        <button className="button">Filters</button>
-        <button className="button">Share</button>
-      </div>
+    <div>
+      
+      <LoginSignup /> {/* Adăugarea componentei pentru login/signup */}
     </div>
   );
 };
 
-export default TopBar;
+export default App;
