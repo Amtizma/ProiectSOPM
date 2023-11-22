@@ -1,16 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+// Inside App.js
 
-const TopBar = () => {
+import React from 'react';
+import './topbar.css'; // Import the TopBar CSS file
+import TopBar from './topbar.js'; // Import the TopBar component
+
+const App = () => {
   return (
-    <div className="top-bar">
-      <div className="buttons">
-        <button className="button">Automation</button>
-        <button className="button">Filters</button>
-        <button className="button">Share</button>
-      </div>
+    <div className="App">
+      {/* Other content in your app */}
+      <TopBar /> {/* Include the TopBar component */}
+      {/* Other content in your app */}
     </div>
   );
 };
 
-export default TopBar;
+export default App;
