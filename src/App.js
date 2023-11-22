@@ -11,7 +11,6 @@ const TopBar = () => {
                 <button className="button">Filters</button>
                 <button className="button">Share</button>
             </div>
-            <CategoryPage />
         </div>
     );
 };
@@ -21,6 +20,8 @@ const App = () => {
         <div className="App">
             {/* Restul codului tău existent */}
             <TopBar /> {/* Adaugă aici componenta TopBar */}
+            <div className="categoriesAndTasks">
+            <CategoryPage />
             <div className="categorii">
                 <div className="categorie">
                     <h2>Todo</h2>
@@ -35,7 +36,9 @@ const App = () => {
                     {/* Adaugă aici lista cu activități realizate */}
                 </div>
             </div>
+            </div>
         </div>
+
     );
 };
 
