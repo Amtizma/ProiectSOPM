@@ -1,8 +1,8 @@
 import React from 'react';
-import React from 'react';
-import LoginSignup from './LoginSignup'; // Importul noii componente
+// import LoginSignup from './LoginSignup'; // Importul noii componente
 import CategoryPage from './Category';
 import './categories.css';
+import './App.css';
 import './topbar.css';
 import TopBar from './topbar';
 
