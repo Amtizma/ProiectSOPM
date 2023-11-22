@@ -1,5 +1,8 @@
 .App {
-  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: lightblue;
 }
 
 .App-logo {
@@ -35,4 +38,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.categorii {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  width: 80%;
+}
+
+.categorie {
+  background-color: white;
+  flex: 1;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+}
+.categoriesAndTasks {
+  display: flex;
+  position: relative;
 }
