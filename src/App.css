@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+
+.categorii {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.categorie {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 10px;
+}
