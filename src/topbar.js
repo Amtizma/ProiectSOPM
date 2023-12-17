@@ -137,7 +137,6 @@ const TopBar = () => {
           </div>
         </div>
       )}
-
 </div>
 </div>
 </div>
