@@ -9,7 +9,7 @@ const TaskCategories = ({ categories }) => {
                     <li key={index}>{category}</li>
                 ))}
             </ul>
-  
+        
         </div>
         <div>
             <h2>Ongoing</h2>

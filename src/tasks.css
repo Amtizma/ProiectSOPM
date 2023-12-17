@@ -1,27 +1,53 @@
 
-.task-columns {
+/* Container for all task categories */
+.task-categories-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px; /* Adjust as needed */
+  }
+  
+  /* Update .task-columns to remove outer margins if they're no longer needed */
+  .task-columns {
     display: flex;
     justify-content: space-around;
-    margin: 0 auto;
-    max-width: 1200px; /* Adjust the max width as necessary */
+    gap: 20px; /* Optional: adds space between columns */
+    margin: 0; /* Reset margins */
   }
   
-  .task-column {
-    width: 30%; /* Each column takes roughly a third of the container width */
-    margin: 0 10px; /* Spacing between columns */
-    background-color: #f9f9f9; /* Light grey background, can be changed */
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Simple shadow for depth */
-    border-radius: 4px; /* Slightly rounded corners for a polished look */
-  }
+  /* Rest of tasks.css content stays unchanged */
+  /* ...previous CSS styles... */
   
-  .task {
-    background-color: white;
+.form-container {
+    margin-bottom: 30px; /* Increased space between the form and the columns */
+}
+
+
+
+.task-column {
+    border: 1px solid #e1e1e1; /* Light grey border for delineation */
     padding: 10px;
-    margin-bottom: 10px;
+    width: 30%;
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.task {
+    background-color: #ffffff;
+    margin: 10px 0;
+    padding: 10px;
     border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Additional styles can be added below */
-  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Highlight the active column */
+.active {
+    transform: scale(1.03);
+}
+
+/* Ensure font consistency */
+body, button, input, select, h2 {
+    font-family: 'Arial', sans-serif;
+}
+

@@ -1,45 +1,37 @@
+// AddTaskForm.js
 import React, { useState } from 'react';
 
-const AddNewCategory = ({ addCategory }) => {
-    const [showInput, setShowInput] = useState(false);
-    const [newCategoryName, setNewCategoryName] = useState('');
+function AddTaskForm({ onAddTask }) {
+  const [task, setTask] = useState('');
+  const [category, setCategory] = useState('todo'); // set default category
 
-    const handleButtonClick = () => {
-        setShowInput(true);
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (task) {
+      onAddTask(task, category);
+      setTask('');
+      setCategory('todo'); // reset to default category
+    }
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (newCategoryName.trim() !== '') {
-            addCategory(newCategoryName);
-            setNewCategoryName('');
-            setShowInput(false);
-        }
-    };
-    const handleCancel = () => {
-        setShowInput(false);
-        setNewCategoryName('');
-    };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          placeholder="Enter a task"
+        />
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="todo">Todo</option>
+          <option value="ongoing">Ongoing</option>
+          <option value="done">Done</option>
+        </select>
+        <button type="submit">Add Task</button>
+      </form>
+    </div>
+  );
+}
 
-    return (
-        <div>
-            {showInput ? (
-                <form onSubmit={handleSubmit}>
-                    <input
-                        className='category-name-textbox'
-                        type="text"
-                        placeholder="Enter category name"
-                        value={newCategoryName}
-                        onChange={(event) => setNewCategoryName(event.target.value)}
-                    />
-                    <button type="submit" className='confirm-add-category-button'>Add Card</button>
-                    <button type="button" onClick={handleCancel} className='cancel-add-category-button'>X</button>
-                </form>
-            ) : (
-                <button onClick={handleButtonClick} className='add-category-button'>Add Card</button>
-            )}
-        </div>
-    );
-};
-
-export default AddNewCategory;
+export default AddTaskForm;
