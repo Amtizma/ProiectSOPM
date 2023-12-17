@@ -13,6 +13,7 @@ const ThemePopup = ({ onClose }) => {
         }
     };
 
+
     return (
         <div className="theme-popup">
             <div className="theme-content">

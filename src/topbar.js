@@ -56,6 +56,7 @@ const TopBar = () => {
                     <ThemePopup onClose={toggleThemePopup} />
                 </div>
             )}
+
         </div>
     );
 };
