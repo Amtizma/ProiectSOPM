@@ -1,11 +1,17 @@
 import './topbar.css';
 import 'boxicons/css/boxicons.min.css';
 import logo from './images/logo.png';
-
+import React, { useState } from 'react';
 
 
 
 const TopBar = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
   return (
 <div className="top-bar">
 
@@ -22,8 +28,16 @@ const TopBar = () => {
 <button className="button">Filters</button>
 <button className="button">Share</button>
 
-<button className="button settings-button">
-<i className='bx bx-dots-horizontal-rounded'></i> 
+<button className={`button settings-button ${showMenu ? 'active' : ''}`} onClick={toggleMenu}>
+<i className='bx bx-dots-horizontal-rounded'></i>
+  {showMenu && (
+      <div className="dropdown-menu">
+        <ul>
+          <li>Change Theme</li>
+          <li>Logout</li>
+        </ul>
+      </div>
+  )}
 </button>
 
 </div>
