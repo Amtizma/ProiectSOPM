@@ -31,6 +31,7 @@ const AddNewCategory = ({ addCategory }) => {
                         placeholder="Enter category name"
                         value={newCategoryName}
                         onChange={(event) => setNewCategoryName(event.target.value)}
+                        maxLength={15}
                     />
                     <button type="submit" className='confirm-add-category-button'>Add Card</button>
                     <button type="button" onClick={handleCancel} className='cancel-add-category-button'>X</button>
