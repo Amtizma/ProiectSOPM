@@ -1,70 +1,125 @@
+/* For laptops/desktops */
+body {
+  background: lightblue;
+  margin: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
+.top-bar {
+  background-color: #eef9f0;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
 
-body{
-    background: lightblue;
+.charter-title {
+  font-weight: bold;
+  font-size: 35px;
+  margin: 0;
+  position: relative;
+  top: 16px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.left-section {
+  position: absolute;
+  display: flex;
+  top: 11%;
+  left: 2%;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+  margin-right: 30px;
+}
+
+.button {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-left: 0%;
+  margin-right: 40px;
+  padding: 8px 16px;
+  border: none;
+  background-color: rgb(201, 201, 201);
+  color: rgb(63, 63, 63);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #f0f0f0;
+}
+
+.settings-button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #eef9f0;
+  font-size: 25px;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* For mobile */
+@media screen and (max-width: 768px) {
+  .top-bar {
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .left-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: static;
+  }
+
+  .logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+  }
+
+  .charter-title {
+    font-size: 20px;
     margin: 0;
   }
-  
-  .top-bar {
-    background-color: #eef9f0;
-    padding: 20px;
+
+  .right-section {
     display: flex;
-    justify-content: flex-end; 
-    position: relative;
+    flex-direction: column;
   }
-  
-  
-  
-  .charter-title {
-    font-weight: bold;
-    font-size: 35px;
-    margin: 0; 
-    position: relative;
-    top: 16px; 
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-  
-  .left-section {
-    position: absolute;
+
+  .buttons {
     display: flex;
-    top: 11%;
-    left: 2%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
   }
-  
-  .logo {
-    width: 60px;
-    height: auto;
-    margin-right: 30px; 
-  }
-  
-  
-  
-  
+
   .button {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-left: 0%; 
-    margin-right: 40px;
-    padding: 8px 16px;
+    margin: 5px;
+    padding: 5px 10px;
     border: none;
     background-color: rgb(201, 201, 201);
     color: rgb(63, 63, 63);
     border-radius: 4px;
     cursor: pointer;
-    
   }
-  
-  
+
   .button:hover {
     background-color: #f0f0f0;
   }
-  
+
   .settings-button {
-    padding: 8px 16px;
-    border: none;
+    font-size: 20px;
+    padding: 5px 10px;
     background-color: #eef9f0;
-    font-size: 25px;
     color: #333;
     border-radius: 4px;
     cursor: pointer;
   }
-  
+}
