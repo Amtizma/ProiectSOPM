@@ -81,3 +81,10 @@
     border-radius: 5px;
     margin-bottom: 10px;
 }
+.delete-category-button{
+    color: #1e0408;
+    border: none;
+    font-size: 16px;
+    float: right;
+    cursor: pointer;
+}
