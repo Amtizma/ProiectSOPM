@@ -9,9 +9,14 @@ const CategoryPage = () => {
         setCategories([...categories, newCategory]);
     };
 
+    const deleteCategory = (index) => {
+        const updatedCategories = categories.filter((_, idx) => idx !== index);
+        setCategories(updatedCategories);
+    };
+
     return (
-        <div className= "categories">
-            <Categories categories={categories} />
+        <div className="categories">
+            <Categories categories={categories} onDelete={deleteCategory} />
             <AddNewCategory addCategory={addCategory} />
         </div>
     );
