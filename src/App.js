@@ -13,7 +13,7 @@ const App = () => {
             <TopBar />
             <div className="categoriesAndTasks">
             <CategoryPage />
-            <TaskPage/>
+                <TaskPage/>
             </div>
         </div>
 

@@ -47,7 +47,7 @@ const TopBar = () => {
                                 <button className={`button ${showAuto ? 'active' : ''}`} onClick={toggleAuto}>
                                     Automation
                                     {showAuto && (
-                                        <div className="dropdown-menu2">
+                                        <div className="dropdown-menu">
                                             <ul>
                                                 <li>Rules</li>
                                                 <li onClick={toggleFeedbackPopup}>Send feedback</li>
@@ -61,7 +61,7 @@ const TopBar = () => {
                                 <button className={`button ${showFilters ? 'active' : ''}`} onClick={toggleFilters}>
                                     Filters
                                     {showFilters && (
-                                        <div className="dropdown-menu1">
+                                        <div className="dropdown-menu">
                                             <ul>
                                                 <li>By Deault</li>
                                                 <li>By ????</li>

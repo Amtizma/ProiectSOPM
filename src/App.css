@@ -59,4 +59,5 @@
 .categoriesAndTasks {
   display: flex;
   position: relative;
+  z-index: 0;
 }
