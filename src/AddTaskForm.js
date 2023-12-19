@@ -1,37 +1,52 @@
-// AddTaskForm.js
 import React, { useState } from 'react';
 
-function AddTaskForm({ onAddTask }) {
+const AddTaskForm = ({ onAddTask, category }) => {
+  const [showForm, setShowForm] = useState(false);
   const [task, setTask] = useState('');
-  const [category, setCategory] = useState('todo'); // set default category
+
+  const handleButtonClick = () => {
+    setShowForm(true);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (task) {
+    if (task.trim() !== '') {
       onAddTask(task, category);
       setTask('');
-      setCategory('todo'); // reset to default category
+      setShowForm(false);
     }
   };
 
+  const handleCancel = () => {
+    setShowForm(false);
+    setTask('');
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          placeholder="Enter a task"
-        />
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="todo">Todo</option>
-          <option value="ongoing">Ongoing</option>
-          <option value="done">Done</option>
-        </select>
-        <button type="submit">Add Task</button>
-      </form>
-    </div>
+      <div>
+        {showForm ? (
+            <form onSubmit={handleSubmit}>
+              <input
+                  className="category-name-textbox"
+                  type="text"
+                  value={task}
+                  onChange={(e) => setTask(e.target.value)}
+                  placeholder="Enter a task"
+              />
+              <button type="submit" className="confirm-add-category-button">
+                Add Task
+              </button>
+              <button type="button" onClick={handleCancel} className="cancel-add-category-button">
+                X
+              </button>
+            </form>
+        ) : (
+            <button onClick={handleButtonClick} className="add-category-button">
+              Add Task
+            </button>
+        )}
+      </div>
   );
-}
+};
 
 export default AddTaskForm;

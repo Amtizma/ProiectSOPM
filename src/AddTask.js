@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import AddTaskForm from './AddTaskForm';
-import './tasks.css'; // make sure this path is correct
+import './tasks.css';
+import TaskColumn from './TaskColumn';
 
 function AddTask() {
-  const [tasks, setTasks] = useState({ todo: [], ongoing: [], done: [] });
-  const [activeColumn, setActiveColumn] = useState('');
+  const [tasks, setTasks] = useState({
+    todo: [],
+    ongoing: [],
+    done: []
+  });
 
   const handleAddTask = (taskDescription, category) => {
     const newTask = { id: Date.now(), description: taskDescription };
@@ -12,28 +15,30 @@ function AddTask() {
       ...prevTasks,
       [category]: [...prevTasks[category], newTask]
     }));
-    setActiveColumn(category); // Highlight the column where the new task is added
-    setTimeout(() => setActiveColumn(''), 2000); // Remove highlight after 2 seconds
+  };
+
+  const deleteTasks = (category, taskId) => {
+    setTasks(prevTasks => {
+      const updatedTasks = { ...prevTasks };
+      updatedTasks[category] = updatedTasks[category].filter(task => task.id !== taskId);
+      return updatedTasks;
+    });
   };
 
   return (
-    <div>
-      <div className='form-container'>
-        <AddTaskForm onAddTask={handleAddTask} />
-      </div>
-      <div className='task-categories-container'>
+      <div className="task-containers">
         <div className='task-columns'>
           {Object.entries(tasks).map(([category, tasks]) => (
-            <div key={category} className={`task-column ${activeColumn === category ? 'active' : ''}`}>
-              <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-              {tasks.map(task => (
-                <div key={task.id} className='task'>{task.description}</div>
-              ))}
-            </div>
+              <TaskColumn
+                  key={category}
+                  category={category}
+                  tasks={tasks}
+                  onAddTask={handleAddTask}
+                  onDeleteTask={deleteTasks}
+              />
           ))}
         </div>
       </div>
-    </div>
   );
 }
 
