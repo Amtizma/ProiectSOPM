@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import Dropdown from './Dropdown';
 import {cats} from "./Category";
-import {_pastelColors, assignBackgroundColor} from "./CategoryDef";
+
 
 const AddTaskForm = ({ onAddTask, category}) => {
+
+  var handledCats = []
+  for(let i = 0; i < cats.length; i++)
+  {
+    handledCats[i] = cats[i].cat
+  }
 
   const [showForm, setShowForm] = useState(false);
   const [task, setTask] = useState('');
@@ -45,7 +51,7 @@ const AddTaskForm = ({ onAddTask, category}) => {
               </button>
 
               <div className="Dropdown">
-                <Dropdown options={cats} />
+                <Dropdown options={handledCats} />
               </div>
 
             </form>

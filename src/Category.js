@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import Categories from './CategoryDef';
 import AddNewCategory from './CategoryForm';
 import Category from './CategoryClass';
+import {_pastelColors, assignBackgroundColor} from "./CategoryDef";
 
 var cats = []
 
 const CategoryPage = () => {
     const [categories, setCategories] = useState(['Category 1']);
 
-    cats = categories
+    for(let i = 0; i < categories.length; i++)
+    {
+        cats[i] = new Category(categories[i], _pastelColors[i%_pastelColors.length])
+    }
 
     console.log(cats)
 
