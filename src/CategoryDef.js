@@ -1,9 +1,13 @@
 import React from 'react';
 
+var _pastelColors = []
+
 const Categories = ({ categories, onDelete}) => {
     const pastelColors = ['#FFDDC1', '#B5EAD7', '#FFC3A0', '#B8F2E6', '#FFAAA7', '#D8E2DC', '#F4A261', '#2A9D8F', '#E9C46A', '#264653'];
 
-    const assignBackgroundColor = (index) => {
+    _pastelColors = pastelColors
+
+    var assignBackgroundColor = (index) => {
         return {
             backgroundColor: pastelColors[index % pastelColors.length]
         };
@@ -22,4 +26,6 @@ const Categories = ({ categories, onDelete}) => {
     );
 };
 
+export var assignBackgroundColor;
+export var _pastelColors;
 export default Categories;

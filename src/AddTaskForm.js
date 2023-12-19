@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import Dropdown from './Dropdown';
+import {cats} from "./Category";
+import {_pastelColors, assignBackgroundColor} from "./CategoryDef";
 
-const AddTaskForm = ({ onAddTask, category }) => {
+const AddTaskForm = ({ onAddTask, category}) => {
+
   const [showForm, setShowForm] = useState(false);
   const [task, setTask] = useState('');
 
@@ -39,11 +43,16 @@ const AddTaskForm = ({ onAddTask, category }) => {
               <button type="button" onClick={handleCancel} className="cancel-add-category-button">
                 X
               </button>
+
+              <div className="Dropdown">
+                <Dropdown options={cats} />
+              </div>
+
             </form>
         ) : (
-            <button onClick={handleButtonClick} className="add-category-button">
-              Add Task
-            </button>
+          <button onClick={handleButtonClick} className="add-category-button">
+            Add Task
+          </button>
         )}
       </div>
   );
