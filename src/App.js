@@ -5,6 +5,7 @@ import './categories.css';
 import './App.css';
 import './topbar.css';
 import TopBar from './topbar';
+import TaskPage from './AddTask';
 
 const App = () => {
     return (
@@ -12,17 +13,7 @@ const App = () => {
             <TopBar />
             <div className="categoriesAndTasks">
             <CategoryPage />
-            <div className="categorii">
-                <div className="categorie">
-                    <h2>Todo</h2>
-                </div>
-                <div className="categorie">
-                    <h2>Ongoing</h2>
-                </div>
-                <div className="categorie">
-                    <h2>Done</h2>
-                </div>
-            </div>
+                <TaskPage/>
             </div>
         </div>
 

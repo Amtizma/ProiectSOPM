@@ -1,79 +1,134 @@
+/* For laptops/desktops */
+body {
+  background: lightblue;
+  margin: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.top-bar {
+  background-color: #eef9f0;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 10;
+}
+
+.charter-title {
+  font-weight: bold;
+  font-size: 35px;
+  margin: 0;
+  position: relative;
+  top: 16px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.left-section {
+  position: absolute;
+  display: flex;
+  top: 11%;
+  left: 2%;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+  margin-right: 30px;
+}
+
+.button {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-left: 0%;
+  margin-right: 40px;
+  padding: 8px 16px;
+  border: none;
+  background-color: rgb(201, 201, 201);
+  color: rgb(63, 63, 63);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #f0f0f0;
+}
+
+.settings-button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #eef9f0;
+  font-size: 25px;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 
-body{
-    background: lightblue;
-    margin: 0;
-  }
-  
-  .top-bar {
-    background-color: #eef9f0;
-    padding: 20px;
-    display: flex;
-    justify-content: flex-end; 
-    position: relative;
-  }
-  
-  
-  
-  .charter-title {
-    font-weight: bold;
-    font-size: 35px;
-    margin: 0; 
-    position: relative;
-    top: 16px; 
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-  
-  .left-section {
-    position: absolute;
-    display: flex;
-    top: 11%;
-    left: 2%;
-  }
-  
-  .logo {
-    width: 60px;
-    height: auto;
-    margin-right: 30px; 
-  }
-  
-  
-  
-  
-  .button {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-left: 0%; 
-    margin-right: 40px;
-    padding: 8px 16px;
-    border: none;
-    background-color: rgb(201, 201, 201);
-    color: rgb(63, 63, 63);
-    border-radius: 4px;
-    cursor: pointer;
-    
-  }
-  
-  
-  .button:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .settings-button {
-    padding: 8px 16px;
-    border: none;
-    background-color: #eef9f0;
-    font-size: 25px;
-    color: #333;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+/*START automation*/
+.dropdown-menu2 {
+  position: absolute;
+  top: 67px;
+  right: 370px;
+  background-color: rgb(201, 201, 201);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.dropdown-menu2 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.dropdown-menu2 li {
+  padding: 12px 15px;
+  cursor: pointer;
+}
+
+.dropdown-menu2 li:hover {
+  background-color: #f5f5f5;
+}
+
+
+/* END automation */
+
+
+/*START FILTERS*/
+.dropdown-menu1 {
+  position: absolute;
+  top: 67px;
+  right: 250px;
+  background-color: rgb(201, 201, 201);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.dropdown-menu1 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.dropdown-menu1 li {
+  padding: 12px 15px;
+  cursor: pointer;
+}
+
+.dropdown-menu1 li:hover {
+  background-color: #f5f5f5;
+}
+
+
+/* END FILTERS */
+
+
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
   right: 0;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 100;
 }
 
 .dropdown-menu ul {
@@ -91,4 +146,153 @@ body{
   background-color: #f5f5f5;
 }
 
-  
+
+/*FEEDBACK*/
+
+/* ... other existing styles ... */
+
+/* Feedback Popup */
+.feedback-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.feedback-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  width: 300px; /* Adjust as needed */
+}
+
+.feedback-content h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.feedback-content textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 15px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.feedback-content button {
+  padding: 8px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.feedback-content button:hover {
+  background-color: #555;
+}
+
+
+/* END FEEDBACK*/
+
+
+/* For mobile */
+@media screen and (max-width: 768px) {
+  .top-bar {
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .left-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: static;
+  }
+
+  .logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+  }
+
+  .charter-title {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .right-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: rgb(201, 201, 201);
+    color: rgb(63, 63, 63);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: #f0f0f0;
+  }
+
+  .settings-button {
+    font-size: 20px;
+    padding: 5px 10px;
+    background-color: #eef9f0;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+  /*START FILTERS*/
+.dropdown-menu1 {
+  position: absolute;
+  top: 100px;
+  right: 42%;
+}
+
+.dropdown-menu1 ul {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.dropdown-menu2 {
+  position: absolute;
+  top: 100px;
+  right: 60%;
+}
+
+.dropdown-menu2 ul {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+
+
+
+}

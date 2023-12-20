@@ -1,0 +1,64 @@
+.task-containers{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px;
+    width: 80%;
+    background-color: white;
+    z-index: 0;
+}
+/* Container for all task categories */
+.task-categories-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px; /* Adjust as needed */
+  }
+  
+  /* Update .task-columns to remove outer margins if they're no longer needed */
+  .task-columns {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px; /* Optional: adds space between columns */
+    margin: 0; /* Reset margins */
+  }
+  
+  /* Rest of tasks.css content stays unchanged */
+  /* ...previous CSS styles... */
+  
+.form-container {
+
+}
+
+
+
+.task-column {
+    border: 1px solid #e1e1e1; /* Light grey border for delineation */
+    padding: 10px;
+    width: 33%;
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.task {
+   
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Highlight the active column */
+.active {
+    transform: scale(1.03);
+}
+
+/* Ensure font consistency */
+body, button, input, select, h2 {
+    font-family: 'Arial', sans-serif;
+}
+.taskInput{
+    width: 100%;
+}
+
