@@ -9,8 +9,8 @@ function AddTask() {
     done: []
   });
 
-  const handleAddTask = (taskDescription, category) => {
-    const newTask = { id: Date.now(), description: taskDescription };
+  const handleAddTask = (taskDescription, category, color) => {
+    const newTask = { id: Date.now(), description: taskDescription, color: color };
     setTasks(prevTasks => ({
       ...prevTasks,
       [category]: [...prevTasks[category], newTask]

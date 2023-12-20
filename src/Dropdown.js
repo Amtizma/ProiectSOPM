@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import {cats} from "./Category";
+import { cats } from './Category';
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, onSelectColor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
   const toggling = () => setIsOpen(!isOpen);
 
   let getColour = (value) => {
-    for(let i = 0; i < cats.length; i++){
-      if(cats[i].cat == value)
-      {
-        return cats[i].colour
+    for (let i = 0; i < cats.length; i++) {
+      if (cats[i].cat === value) {
+        return cats[i].colour;
       }
     }
-  } 
+  };
 
   const onOptionClicked = (value) => () => {
+    const selectedColor = getColour(value);
     setSelectedOption(value);
     setIsOpen(false);
-    console.log(getColour(value))
-    console.log(document.getElementsByClassName("task"))
+    console.log(selectedColor);
+    onSelectColor(selectedColor); // Transmite culoarea către componenta părinte
   };
 
   return (
     <div className="dropdown">
       <div className="dropdown-header" onClick={toggling}>
-        {selectedOption || "Select an option"}
-        <span className={`arrow ${isOpen ? "open" : ""}`}></span>
+        {selectedOption || 'Select an option'}
+        <span className={`arrow ${isOpen ? 'open' : ''}`}></span>
       </div>
       {isOpen && (
         <ul className="dropdown-list">

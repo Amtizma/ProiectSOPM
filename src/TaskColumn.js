@@ -17,7 +17,7 @@ function TaskColumn({ category, tasks, onAddTask, onDeleteTask }) {
         <div className={`task-column ${activeColumn === category ? 'active' : ''}`}>
             <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
             {tasks.map(task => (
-                <div key={task.id} className='task'>
+                <div key={task.id} className='task' style={{ backgroundColor: task.color }}>
                     {task.description}
                     <button onClick={() => handleDeleteTask(task.id)} className='delete-category-button'>
                         x
