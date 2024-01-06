@@ -1,4 +1,4 @@
-.task-containers{
+.task-containers {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 16px;
@@ -7,6 +7,7 @@
     background-color: white;
     z-index: 0;
 }
+
 /* Container for all task categories */
 .task-categories-container {
     background-color: white;
@@ -14,35 +15,95 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px auto;
-    max-width: 1200px; /* Adjust as needed */
-  }
-  
-  /* Update .task-columns to remove outer margins if they're no longer needed */
-  .task-columns {
+    max-width: 1200px;
+    /* Adjust as needed */
+}
+
+/* Update .task-columns to remove outer margins if they're no longer needed */
+.task-columns {
     display: flex;
     justify-content: space-around;
-    gap: 20px; /* Optional: adds space between columns */
-    margin: 0; /* Reset margins */
-  }
-  
-  /* Rest of tasks.css content stays unchanged */
-  /* ...previous CSS styles... */
-  
-.form-container {
-
+    gap: 20px;
+    /* Optional: adds space between columns */
+    margin: 0;
+    /* Reset margins */
 }
+
+/* Rest of tasks.css content stays unchanged */
+/* ...previous CSS styles... */
+
+.form-container {}
 
 
 
 .task-column {
-    border: 1px solid #e1e1e1; /* Light grey border for delineation */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e1e1e1;
+    /* Light grey border for delineation */
     padding: 10px;
     width: 33%;
-    transition: transform 0.3s ease; /* Smooth transition for scaling */
+    transition: transform 0.3s ease;
+    /* Smooth transition for scaling */
+    position: relative;
+    /* Adaugăm position: relative pentru a avea un context pentru poziționarea absolută a butonului */
 }
 
+/* Stiluri pentru butonul de ștergere (x) */
+.delete-column-button {
+    align-self: flex-end;
+    /* Poziționăm butonul în partea din dreapta sus folosind flexbox */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Stilurile pentru butonul de adăugare a coloanelor adaptate la efectul specificat */
+.add-column-button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: lightblue;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    /* Reducem dimensiunea fontului */
+    padding: 10px 15px;
+    /* Reducem padding-ul pentru a face butonul mai mic */
+    width: auto;
+    /* Lăsăm butonul să aibă lățimea în funcție de conținut */
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+    width: 10%;
+    height: 100%;
+}
+
+.add-column-button::after {
+    content: '+';
+    position: absolute;
+    opacity: 0;
+    top: 70%;
+    left: 45%;
+    transition: 0.3s;
+}
+
+.add-column-button:hover::after {
+    opacity: 1;
+}
+
+.add-column-button:hover {
+    padding-bottom: 30px;
+}
+
+
 .task {
-   
+
     margin: 10px 0;
     padding: 10px;
     border-radius: 4px;
@@ -55,10 +116,14 @@
 }
 
 /* Ensure font consistency */
-body, button, input, select, h2 {
+body,
+button,
+input,
+select,
+h2 {
     font-family: 'Arial', sans-serif;
 }
-.taskInput{
+
+.taskInput {
     width: 100%;
 }
-

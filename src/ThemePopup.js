@@ -5,13 +5,19 @@ const ThemePopup = ({ onClose }) => {
     const changeTheme = (color1, color2) => {
         const topBar = document.querySelector('.top-bar');
         const App = document.querySelector('.App');
+        const addColumnButton = document.querySelector('.add-column-button');
+
         if (topBar) {
             topBar.style.backgroundColor = color1;
         }
-        if(App){
-            App.style.backgroundColor= color2;
+        if (App) {
+            App.style.backgroundColor = color2;
+        }
+        if (addColumnButton) {
+            addColumnButton.style.backgroundColor = color2; // Schimbăm culoarea butonului
         }
     };
+
 
 
     return (
