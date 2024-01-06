@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { cats } from './Category';
+import './dropdown.css'; // Import the CSS file
 
 const Dropdown = ({ options, onSelectColor }) => {
   const [isOpen, setIsOpen] = useState(false);

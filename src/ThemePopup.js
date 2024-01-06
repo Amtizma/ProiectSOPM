@@ -15,7 +15,7 @@ const ThemePopup = ({ onClose }) => {
 
 
     return (
-        <div className="theme-popup">
+                <div className="theme-popup">
             <div className="theme-content">
                 <h3>Choose a Theme</h3>
                 <div className="theme-buttons">
@@ -26,7 +26,7 @@ const ThemePopup = ({ onClose }) => {
                 </div>
                 <button onClick={onClose} className="close-button">Close</button>
             </div>
-        </div>
+                    </div>
     );
 };
 
