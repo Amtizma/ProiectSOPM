@@ -18,20 +18,13 @@ function AddTask() {
   };
   
   const deleteTasks = (category, taskId) => {
-    const isBaseCategory = ['todo', 'ongoing', 'done'].includes(category);
-
-    if (!isBaseCategory) {
-      setTasks(prevTasks => {
-        const updatedTasks = { ...prevTasks };
-        updatedTasks[category] = updatedTasks[category].filter(task => task.id !== taskId);
-        return updatedTasks;
-      });
-    } else {
-      console.log(`Nu puteți șterge task-uri din categoria ${category}.`);
-      // Poți adăuga o notificare sau acțiuni suplimentare pentru utilizator aici
-    }
+    setTasks(prevTasks => {
+      const updatedTasks = { ...prevTasks };
+      updatedTasks[category] = updatedTasks[category].filter(task => task.id !== taskId);
+      return updatedTasks;
+    });
   };
-
+  
 
   const addColumn = () => {
     const columnName = prompt('Introduceți numele coloanei:');
