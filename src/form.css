@@ -21,24 +21,31 @@
 .priority-button.selected {
     background-color: #3498db;
     color: #fff;
-    border: 3px solid #2980b9; /* Add a border to make it more evident */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow for depth */
+    border: 3px solid #2980b9;
+    /* Add a border to make it more evident */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /* Add a subtle box shadow for depth */
 }
+
 .priority-button:hover {
     background-color: #f0f0f0;
 }
 
+:root {
+    --theme-color: lightblue;
+}
+
 .priority-button.low {
-    background-color: green;
+    background: linear-gradient(to right, green, var(--theme-color));
     color: #fff;
 }
 
 .priority-button.medium {
-    background-color: #f39c12;
+    background: linear-gradient(to right, #f39c12, var(--theme-color));
     color: #fff;
 }
 
 .priority-button.high {
-    background-color: red;
+    background: linear-gradient(to right, red, var(--theme-color));
     color: #fff;
 }

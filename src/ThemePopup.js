@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ThemePopup.css';
 
 const ThemePopup = ({ onClose }) => {
     const [selectedTheme, setSelectedTheme] = useState('lightblue'); // Default theme
 
     const changeTheme = (color1, color2) => {
+        document.documentElement.style.setProperty('--theme-color', color2);
+
         const topBar = document.querySelector('.top-bar');
         const App = document.querySelector('.App');
         const addColumnButton = document.querySelector('.add-column-button');
@@ -16,7 +18,7 @@ const ThemePopup = ({ onClose }) => {
             App.style.backgroundColor = color2;
         }
         if (addColumnButton) {
-            addColumnButton.style.backgroundColor = color2; 
+            addColumnButton.style.backgroundColor = color2;
         }
         setSelectedTheme(color2);
     };
