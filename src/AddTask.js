@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './tasks.css';
 import TaskColumn from './TaskColumn';
+import AddColumnPopup from './AddColumnPopup';
 
 function AddTask() {
   const [tasks, setTasks] = useState({
@@ -16,7 +17,7 @@ function AddTask() {
       [category]: [...prevTasks[category], newTask]
     }));
   };
-  
+
   const deleteTasks = (category, taskId) => {
     setTasks(prevTasks => {
       const updatedTasks = { ...prevTasks };
@@ -24,22 +25,24 @@ function AddTask() {
       return updatedTasks;
     });
   };
-  
-
-  const addColumn = () => {
-    const columnName = prompt('Introduceți numele coloanei:');
-    if (columnName) {
-      setTasks(prevTasks => ({
-        ...prevTasks,
-        [columnName]: []
-      }));
-    }
-  };
-
   const deleteColumn = columnName => {
     const updatedTasks = { ...tasks };
     delete updatedTasks[columnName];
     setTasks(updatedTasks);
+  };
+
+
+  const [showAddColumnPopup, setShowAddColumnPopup] = useState(false);
+
+  const addColumn = () => {
+    setShowAddColumnPopup(true);
+  };
+
+  const handleAddColumn = (columnName) => {
+    setTasks((prevTasks) => ({
+      ...prevTasks,
+      [columnName]: [],
+    }));
   };
 
   return (
@@ -55,10 +58,19 @@ function AddTask() {
             onDeleteColumn={deleteColumn}
           />
         ))}
-        <button onClick={addColumn} className="add-column-button">Add a column</button>
+        <button onClick={addColumn} className="add-column-button">
+          Add a column
+        </button>
       </div>
+      {showAddColumnPopup && (
+         <div className="add-column-popup-overlay">
+         <div className="add-column-popup">
+           <AddColumnPopup onClose={() => setShowAddColumnPopup(false)} onAddColumn={handleAddColumn} />
+         </div>
+       </div>
+      )}
     </div>
   );
-};
+}
 
 export default AddTask;

@@ -28,12 +28,14 @@ function TaskColumn({ category, tasks, onAddTask, onDeleteTask, onDeleteColumn }
 
     return (
         <div className={`task-column ${activeColumn === category ? 'active' : ''}`}>
+            <h2>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+            </h2>
             {!['todo', 'ongoing', 'done'].includes(category) && (
                 <button onClick={handleDeleteColumn} className="delete-column-button">
                     x
                 </button>
             )}
-            <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
             {tasks.map(task => (
                 <div key={task.id} className='task' style={{ backgroundColor: task.color }}>
                     {task.description}
