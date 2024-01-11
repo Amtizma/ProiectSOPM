@@ -28,6 +28,7 @@ const AddTaskForm = ({ onAddTask, category }) => {
       onAddTask(task, category, selectedColor, name, priority);
       setTask('');
       setPriority('')
+      setName('')
       setShowForm(false);
     }
   };
