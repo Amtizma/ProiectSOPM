@@ -125,8 +125,8 @@ h2 {
 
 
 .option-button {
-    margin-left: 80%;
-    background-color: rgba(239, 239, 239, 0); 
+    margin-left: auto;
+    background-color: rgba(239, 239, 239, 0);
     font-weight: bold;
     border: white;
     cursor: pointer;
@@ -194,7 +194,15 @@ h2 {
 .high {
     background-color: red; /* Set the color for high priority */
 }
+.nameandcircle {
+    align-items: center;
+    margin-top: 0;
+    display: flex;
+}
 
+.task-name {
+    margin: 0 0 0 10px;
+}
 
 
 
