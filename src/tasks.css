@@ -127,3 +127,18 @@ h2 {
 .taskInput {
     width: 100%;
 }
+
+
+.option-button {
+    margin-left: 90%;    
+    background-color: rgba(239, 239, 239, 0); /* Set the alpha channel for transparency */
+    font-weight: bold;
+    border: white;
+    cursor: pointer;
+}
+
+
+
+
+
+
