@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddColumnPopup = ({ onClose, onAddColumn }) => {
+const AddColumnPopup = ({ onClose, onAddColumn, themeColor }) => {
     const [columnName, setColumnName] = useState('');
 
     const handleAddColumn = () => {
@@ -20,7 +20,7 @@ const AddColumnPopup = ({ onClose, onAddColumn }) => {
                 onChange={(e) => setColumnName(e.target.value)}
             />
             <div className="button-container">
-                <button onClick={handleAddColumn}>Add</button>
+                <button onClick={handleAddColumn} style={{ backgroundColor: themeColor }}>Add</button>
                 <button onClick={onClose}>Cancel</button>
             </div>
         </div>

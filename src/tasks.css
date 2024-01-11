@@ -168,7 +168,7 @@ h2 {
 
 }
 
-.option-menu li:hover > ul {
+.option-menu li:hover>ul {
     display: block;
 }
 
@@ -176,24 +176,33 @@ h2 {
 .option-menu ul ul li {
     padding: 11px;
 }
+
 .priority-circle {
-    width: 10px; /* Adjust the size of the circle */
-    height: 10px; /* Adjust the size of the circle */
-    border-radius: 50%; /* Ensures the element is a circle */
-    margin-right: 5px; /* Add spacing between the circle and the task name */
+    width: 10px;
+    /* Adjust the size of the circle */
+    height: 10px;
+    /* Adjust the size of the circle */
+    border-radius: 50%;
+    /* Ensures the element is a circle */
+    margin-right: 5px;
+    /* Add spacing between the circle and the task name */
 }
 
 .low {
-    background-color: green; /* Set the color for low priority */
+    background-color: green;
+    /* Set the color for low priority */
 }
 
 .medium {
-    background-color: yellow; /* Set the color for medium priority */
+    background-color: yellow;
+    /* Set the color for medium priority */
 }
 
 .high {
-    background-color: red; /* Set the color for high priority */
+    background-color: red;
+    /* Set the color for high priority */
 }
+
 .nameandcircle {
     align-items: center;
     margin-top: 0;
@@ -204,8 +213,38 @@ h2 {
     margin: 0 0 0 10px;
 }
 
+.task-form-container {
+    display: flex;
+}
 
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Adjust the gap between input elements if needed */
+}
 
+/* Style for priority buttons */
+.priority-button {
+    flex-grow: 1;
+    /* Distribute available space equally among buttons */
+    margin: 0 5px 15px;
+    /* Add space between buttons */
+}
 
-
-
+/* Style for add and cancel buttons */
+.action-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+.category-name-textbox {
+    width: 94%; /* Make sure the input fields take the full width */
+}
+.cancel-add-category-button{
+    color:white;
+    background-color: #c9c9c9;
+}
+.confirm-add-category-button {
+    background-color: lightblue;
+}

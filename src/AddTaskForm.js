@@ -39,28 +39,24 @@ const AddTaskForm = ({ onAddTask, category }) => {
   };
 
   return (
-    <div>
+    <div className="task-form-container">
       {showForm ? (
-        <form onSubmit={handleSubmit} className={`task ${selectedColor ? 'with-color' : ''}`}>
-          <button type="button" onClick={handleCancel} className="cancel-add-category-button">
-            X
-          </button>
-          <input
-            className="category-name-textbox"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter a task"
-          />
-          <input
-            className="category-name-textbox"
-            type="text"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-            placeholder="Enter a task description"
-          />
-          <div className="Dropdown">
-            <Dropdown options={handledCats} onSelectColor={handleSelectColor} />
+        <form onSubmit={handleSubmit} className={`task-form ${selectedColor ? 'with-color' : ''}`}>
+          <div className="input-container">
+            <input
+              className="category-name-textbox"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter a task"
+            />
+            <input
+              className="category-name-textbox"
+              type="text"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              placeholder="Enter a task description"
+            />
           </div>
           <div className="priority-options">
             <button
@@ -85,10 +81,20 @@ const AddTaskForm = ({ onAddTask, category }) => {
               HIGH
             </button>
           </div>
-          <button type="submit" className="confirm-add-category-button">
-            Add Task
-          </button>
+          <div className="Dropdown">
+            <Dropdown options={handledCats} onSelectColor={handleSelectColor} />
+          </div>
+          <div className="action-buttons">
+            <button type="submit" className="confirm-add-category-button">
+              Add Task
+            </button>
+            <button type="button" onClick={handleCancel} className="cancel-add-category-button">
+              Cancel
+            </button>
+          </div>
+
         </form>
+
       ) : (
         <button onClick={handleButtonClick} className="add-category-button">
           Add Task
@@ -96,6 +102,8 @@ const AddTaskForm = ({ onAddTask, category }) => {
       )}
     </div>
   );
+
+
 };
 
 export default AddTaskForm;

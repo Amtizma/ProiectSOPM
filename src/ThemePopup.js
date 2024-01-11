@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import './ThemePopup.css';
 
 const ThemePopup = ({ onClose }) => {
@@ -10,6 +10,8 @@ const ThemePopup = ({ onClose }) => {
         const topBar = document.querySelector('.top-bar');
         const App = document.querySelector('.App');
         const addColumnButton = document.querySelector('.add-column-button');
+        const addTaskButton = document.querySelector('.confirm-add-category-button');
+    
 
         if (topBar) {
             topBar.style.backgroundColor = color1;
@@ -19,6 +21,9 @@ const ThemePopup = ({ onClose }) => {
         }
         if (addColumnButton) {
             addColumnButton.style.backgroundColor = color2;
+        }
+        if (addTaskButton) {
+            addTaskButton.style.backgroundColor = `var(--theme-color)`;
         }
         setSelectedTheme(color2);
     };

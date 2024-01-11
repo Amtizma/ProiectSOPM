@@ -97,30 +97,38 @@ h2 {
 }
 
 .add-column-popup input {
-    width: 50%;
-    padding: 8px;
-    margin-bottom: 10px;
+    width: 70%;
+    /* Adjust the width of the input */
+    padding: 10px;
+    /* Increase padding for better spacing */
+    margin-bottom: 15px;
+    /* Increase margin for better spacing */
+    border: 1px solid #ccc;
+    /* Add a border with a light gray color */
+    border-radius: 8px;
+    /* Apply border-radius */
 }
 
 .add-column-popup .button-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    /* Add space between buttons */
+    width: 60%;
+    /* Set the width of the button container */
 }
 
 .add-column-popup button {
     background: lightblue;
-    /* Blue color, you can adjust */
     color: #fff;
-    padding: 8px 12px;
+    padding: 10px 15px;
+    /* Increase padding for better button appearance */
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
+    /* Apply border-radius */
     cursor: pointer;
-    margin-right: 5px;
 }
 
 .add-column-popup button:last-child {
     background: #c9c9c9;
-    /* Gray color for cancel button */
     margin-right: 0;
-    /* Remove margin-right for the last button */
 }
