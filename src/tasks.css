@@ -36,8 +36,6 @@
 
 
 
-/* tasks.css or your existing styles file */
-
 .task-column {
     display: flex;
     flex-direction: column;
@@ -48,23 +46,20 @@
     transition: transform 0.3s ease;
     /* Smooth transition for scaling */
     position: relative;
-    /* Relative positioning for absolute positioning of the button */
+    /* Adaugăm position: relative pentru a avea un context pentru poziționarea absolută a butonului */
 }
 
+/* Stiluri pentru butonul de ștergere (x) */
 .delete-column-button {
+    align-self: flex-end;
+    /* Poziționăm butonul în partea din dreapta sus folosind flexbox */
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 18px;
     padding: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 5px;
+    margin: 0;
 }
-
-/* Rest of your styles... */
-
 
 /* Stilurile pentru butonul de adăugare a coloanelor adaptate la efectul specificat */
 .add-column-button {
@@ -134,62 +129,63 @@ h2 {
 }
 
 
-.add-column-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    /* Make sure it's on top of other elements */
-}
-
-.add-column-popup {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    /* Keep this to stack elements vertically */
-    align-items: center;
-}
-
-.add-column-popup h2 {
-    margin-bottom: 10px;
-}
-
-.add-column-popup input {
-    width: 50%;
-    padding: 8px;
-    margin-bottom: 10px;
-}
-
-.add-column-popup .button-container {
-    display: flex;
-    justify-content: center;
-}
-
-.add-column-popup button {
-    background: lightblue;
-    /* Blue color, you can adjust */
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
+.option-button {
+    margin-left: 90%;
+    background-color: rgba(239, 239, 239, 0); /* Set the alpha channel for transparency */
+    font-weight: bold;
+    border: white;
     cursor: pointer;
-    margin-right: 5px;
 }
 
-.add-column-popup button:last-child {
-    background: #c9c9c9;
-    /* Gray color for cancel button */
-    margin-right: 0;
-    /* Remove margin-right for the last button */
+.option-menu {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 8px;
+    position: absolute;
+    top: 64%;
+    left: 68%;
+    z-index: 1;
 }
+
+.option-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.option-menu li {
+    cursor: pointer;
+    padding: 8px;
+    transition: background-color 0.3s;
+    background-color: white;
+    position: relative;
+}
+
+.option-menu li:hover {
+    background-color: #f0f0f0;
+}
+
+.option-menu ul ul {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+
+}
+
+.option-menu li:hover > ul {
+    display: block;
+}
+
+/* Style for the sub-menu items */
+.option-menu ul ul li {
+    padding: 11px;
+}
+
+
+
+
+
+
+
+

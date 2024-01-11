@@ -63,9 +63,9 @@ const TopBar = () => {
                                     {showFilters && (
                                         <div className="dropdown-menu">
                                             <ul>
-                                                <li>Deault</li>
-                                                
-                                                <li>By Category</li>
+                                                <li>By Default</li>
+                                                <li>By Nr. of tasks</li>
+                                                <li>By Category name</li>
                                             </ul>
                                         </div>
                                     )}
@@ -81,6 +81,7 @@ const TopBar = () => {
                                         <div className="dropdown-menu">
                                             <ul>
                                                 <li onClick={toggleThemePopup}>Change Theme</li>
+                                                <li>Logout</li>
                                             </ul>
                                         </div>
                                     )}

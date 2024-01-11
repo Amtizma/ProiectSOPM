@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddTaskForm from './AddTaskForm';
 import './tasks.css';
+import './tasks2.css';
 
 function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDeleteColumn, onMoveTask }) {
     const [activeColumn, setActiveColumn] = useState('');
@@ -38,31 +39,42 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
 
     return (
         <div className={`task-column ${activeColumn === category ? 'active' : ''}`}>
-            <h2>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-            </h2>
             {!['todo', 'ongoing', 'done'].includes(category) && (
                 <button onClick={handleDeleteColumn} className="delete-column-button">
                     x
                 </button>
             )}
-            {tasks.map(task => (
-                <div key={task.id} className='task' style={{ backgroundColor: task.color }}>
-                    {task.description}
-                    <div className="task-options">
-                        <button onClick={() => toggleOptions(task.id)} className='option-button'>
-                            ...
-                        </button>
-                        {showOptionsMenu[task.id] && (
-                            <div className="option-menu">
-                                <ul>
-                                    <li onClick={() => handleDeleteTask(task.id)}>Remove</li>
-                                    <li>Move to</li>
-                                    <li>Change Category</li>
-                                </ul>
+            <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+            {Array.isArray(tasks) && tasks.map((task) => (
+                <div key={task.id} className="task" style={{ backgroundColor: task.color }}>
+                    {task.description && (
+                        <>
+                            {task.description}
+                            <div className="task-options">
+                                <button onClick={() => toggleOptions(task.id)} className="option-button">
+                                    ...
+                                </button>
+                                {showOptionsMenu[task.id] && (
+                                    <div className="option-menu">
+                                        <ul>
+                                            <li onClick={() => handleDeleteTask(task.id)}>Remove</li>
+                                            <li>
+                                                Move to
+                                                <ul>
+                                                    {categories.map((targetCategory) => (
+                                                        <li key={targetCategory} onClick={() => handleMoveTask(targetCategory)}>
+                                                            {targetCategory.charAt(0).toUpperCase() + targetCategory.slice(1)}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </li>
+                                            <li>Change Category</li>
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
+                        </>
+                    )}
                 </div>
             ))}
             <div className="form-container">
