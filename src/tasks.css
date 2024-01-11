@@ -130,7 +130,7 @@ h2 {
 
 
 .option-button {
-    margin-left: 90%;    
+    margin-left: 90%;
     background-color: rgba(239, 239, 239, 0); /* Set the alpha channel for transparency */
     font-weight: bold;
     border: white;
@@ -170,7 +170,7 @@ h2 {
     position: absolute;
     left: 100%;
     top: 0;
-    
+
 }
 
 .option-menu li:hover > ul {

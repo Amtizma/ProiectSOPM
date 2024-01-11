@@ -63,33 +63,34 @@ const TopBar = () => {
                             )}
                         </button>
 
-                        <button className={`button ${showFilters ? 'active' : ''}`} onClick={toggleFilters}>
-                            Filters
-                            {showFilters && (
-                                <div className="dropdown-menu">
-                                    <ul>
-                                        <li>Default</li>
-                                        <li>By Category</li>
-                                    </ul>
-                                </div>
-                            )}
-                        </button>
+                                <button className={`button ${showFilters ? 'active' : ''}`} onClick={toggleFilters}>
+                                    Filters
+                                    {showFilters && (
+                                        <div className="dropdown-menu">
+                                            <ul>
+                                                <li>Deault</li>
+                                                
+                                                <li>By Category</li>
+                                            </ul>
+                                        </div>
+                                    )}
+                                </button>
 
                         <button className="button">Share</button>
 
-                        <button
-                            className={`button settings-button ${showMenu ? 'active' : ''}`}
-                            onClick={toggleMenu}>
-                            <i className='bx bx-dots-horizontal-rounded'></i>
-                            {showMenu && (
-                                <div className="dropdown-menu">
-                                    <ul>
-                                        <li onClick={toggleThemePopup}>Change Theme</li>
-                                    </ul>
-                                </div>
-                            )}
-                        </button>
-                    </div>
+                                <button
+                                    className={`button settings-button ${showMenu ? 'active' : ''}`}
+                                    onClick={toggleMenu}>
+                                    <i className='bx bx-dots-horizontal-rounded'></i>
+                                    {showMenu && (
+                                        <div className="dropdown-menu">
+                                            <ul>
+                                                <li onClick={toggleThemePopup}>Change Theme</li>
+                                            </ul>
+                                        </div>
+                                    )}
+                                </button>
+                            </div>
                     {showThemePopup && (
                         <div className="theme-popup">
                             <ThemePopup onClose={toggleThemePopup} />
