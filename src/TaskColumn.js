@@ -46,6 +46,7 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
             <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
             {Array.isArray(tasks) &&
                 tasks.map((task) => (
+
                     <div
                         key={task.id}
                         className="task"
@@ -53,17 +54,20 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                         onMouseEnter={() => setHoveredTask(task)}
                         onMouseLeave={() => setHoveredTask(null)}
                     >
+                        <div className="nameandcircle">
                         {task.priority && (
                             <div className={`priority-circle ${task.priority.toLowerCase()}`}></div>
                         )}
-                        {task.name && <h3>{task.name}</h3>}
-                        <div className="task-options">
+                            {task.name && <h3 className="task-name">{task.name}</h3>}
                             <button
                                 onClick={() => toggleOptions(task.id)}
                                 className="option-button"
                             >
                                 ...
                             </button>
+                        </div>
+                        <div className="task-options">
+
                             {showOptionsMenu[task.id] && (
                                 <div className="option-menu">
                                     <ul>
@@ -86,7 +90,7 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                                                 ))}
                                             </ul>
                                         </li>
-                                        <li>Change Category</li>
+                                        <li>Edit</li>
                                     </ul>
                                 </div>
                             )}
