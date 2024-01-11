@@ -1,0 +1,126 @@
+.add-column-button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: lightblue;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    /* Reducem dimensiunea fontului */
+    padding: 10px 15px;
+    /* Reducem padding-ul pentru a face butonul mai mic */
+    width: auto;
+    /* Lăsăm butonul să aibă lățimea în funcție de conținut */
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+    width: 10%;
+    height: 100%;
+}
+
+.add-column-button::after {
+    content: '+';
+    position: absolute;
+    opacity: 0;
+    top: 70%;
+    left: 45%;
+    transition: 0.3s;
+}
+
+.add-column-button:hover::after {
+    opacity: 1;
+}
+
+.add-column-button:hover {
+    padding-bottom: 30px;
+}
+
+
+.task {
+
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Highlight the active column */
+.active {
+    transform: scale(1.03);
+}
+
+/* Ensure font consistency */
+body,
+button,
+input,
+select,
+h2 {
+    font-family: 'Arial', sans-serif;
+}
+
+.taskInput {
+    width: 100%;
+}
+
+
+.add-column-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Make sure it's on top of other elements */
+}
+
+.add-column-popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    /* Keep this to stack elements vertically */
+    align-items: center;
+}
+
+.add-column-popup h2 {
+    margin-bottom: 10px;
+}
+
+.add-column-popup input {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.add-column-popup .button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.add-column-popup button {
+    background: lightblue;
+    /* Blue color, you can adjust */
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.add-column-popup button:last-child {
+    background: #c9c9c9;
+    /* Gray color for cancel button */
+    margin-right: 0;
+    /* Remove margin-right for the last button */
+}
