@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AddTaskForm from './AddTaskForm';
 import './tasks.css';
-
+import './tasks2.css';
 
 function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDeleteColumn, onMoveTask }) {
     const [activeColumn, setActiveColumn] = useState('');
