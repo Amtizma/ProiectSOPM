@@ -29,8 +29,8 @@ function AddTask({sortOrder, setSortOrder }) {
     });
   };
 
-  const handleAddTask = (taskDescription, category, color) => {
-    const newTask = { id: Date.now(), description: taskDescription, color: color };
+  const handleAddTask = (taskDescription, category, color, name, priority) => {
+    const newTask = { id: Date.now(), description: taskDescription, color: color, name: name, priority: priority};
     setTasks(prevTasks => ({
       ...prevTasks,
       [category]: [...prevTasks[category], newTask]

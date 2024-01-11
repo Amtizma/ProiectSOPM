@@ -181,7 +181,24 @@ h2 {
 .option-menu ul ul li {
     padding: 11px;
 }
+.priority-circle {
+    width: 10px; /* Adjust the size of the circle */
+    height: 10px; /* Adjust the size of the circle */
+    border-radius: 50%; /* Ensures the element is a circle */
+    margin-right: 5px; /* Add spacing between the circle and the task name */
+}
 
+.low {
+    background-color: green; /* Set the color for low priority */
+}
+
+.medium {
+    background-color: yellow; /* Set the color for medium priority */
+}
+
+.high {
+    background-color: red; /* Set the color for high priority */
+}
 
 
 

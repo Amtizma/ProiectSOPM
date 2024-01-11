@@ -6,7 +6,7 @@ import './tasks2.css';
 function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDeleteColumn, onMoveTask }) {
     const [activeColumn, setActiveColumn] = useState('');
     const [showOptionsMenu, setShowOptionsMenu] = useState({});
-    const [selectedTaskId, setSelectedTaskId] = useState(null); // New state to store selected task ID
+    const [hoveredTask, setHoveredTask] = useState(null); // New state to track hovered task
 
     const handleColumnHighlight = () => {
         setActiveColumn(category);
@@ -18,9 +18,9 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
     };
 
     const handleMoveTask = (targetCategory) => {
-        if (selectedTaskId) {
-            onMoveTask(selectedTaskId, targetCategory);
-            toggleOptions(selectedTaskId);
+        if (hoveredTask) {
+            onMoveTask(hoveredTask.id, targetCategory);
+            toggleOptions(hoveredTask.id);
         }
     };
 
@@ -34,7 +34,6 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
             ...prevState,
             [taskId]: !prevState[taskId],
         }));
-        setSelectedTaskId(taskId); // Save the selected task ID
     };
 
     return (
@@ -45,38 +44,60 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                 </button>
             )}
             <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-            {Array.isArray(tasks) && tasks.map((task) => (
-                <div key={task.id} className="task" style={{ backgroundColor: task.color }}>
-                    {task.description && (
-                        <>
-                            {task.description}
-                            <div className="task-options">
-                                <button onClick={() => toggleOptions(task.id)} className="option-button">
-                                    ...
-                                </button>
-                                {showOptionsMenu[task.id] && (
-                                    <div className="option-menu">
-                                        <ul>
-                                            <li onClick={() => handleDeleteTask(task.id)}>Remove</li>
-                                            <li>
-                                                Move to
-                                                <ul>
-                                                    {categories.map((targetCategory) => (
-                                                        <li key={targetCategory} onClick={() => handleMoveTask(targetCategory)}>
-                                                            {targetCategory.charAt(0).toUpperCase() + targetCategory.slice(1)}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </li>
-                                            <li>Change Category</li>
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
-                        </>
-                    )}
-                </div>
-            ))}
+            {Array.isArray(tasks) &&
+                tasks.map((task) => (
+                    <div
+                        key={task.id}
+                        className="task"
+                        style={{ backgroundColor: task.color }}
+                        onMouseEnter={() => setHoveredTask(task)}
+                        onMouseLeave={() => setHoveredTask(null)}
+                    >
+                        {task.priority && (
+                            <div className={`priority-circle ${task.priority.toLowerCase()}`}></div>
+                        )}
+                        {task.name && <h3>{task.name}</h3>}
+                        <div className="task-options">
+                            <button
+                                onClick={() => toggleOptions(task.id)}
+                                className="option-button"
+                            >
+                                ...
+                            </button>
+                            {showOptionsMenu[task.id] && (
+                                <div className="option-menu">
+                                    <ul>
+                                        <li onClick={() => handleDeleteTask(task.id)}>
+                                            Remove
+                                        </li>
+                                        <li>
+                                            Move to
+                                            <ul>
+                                                {categories.map((targetCategory) => (
+                                                    <li
+                                                        key={targetCategory}
+                                                        onClick={() =>
+                                                            handleMoveTask(targetCategory)
+                                                        }
+                                                    >
+                                                        {targetCategory.charAt(0).toUpperCase() +
+                                                            targetCategory.slice(1)}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </li>
+                                        <li>Change Category</li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                        {hoveredTask === task && task.description && (
+                            <>
+                                {task.description}
+                            </>
+                        )}
+                    </div>
+                ))}
             <div className="form-container">
                 <AddTaskForm onAddTask={onAddTask} category={category} onHighlight={handleColumnHighlight} />
             </div>
