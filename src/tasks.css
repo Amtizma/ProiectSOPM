@@ -29,13 +29,6 @@
     /* Reset margins */
 }
 
-/* Rest of tasks.css content stays unchanged */
-/* ...previous CSS styles... */
-
-.form-container {}
-
-
-
 .task-column {
     display: flex;
     flex-direction: column;
@@ -46,19 +39,19 @@
     transition: transform 0.3s ease;
     /* Smooth transition for scaling */
     position: relative;
-    /* Adaugăm position: relative pentru a avea un context pentru poziționarea absolută a butonului */
+    /* Relative positioning for absolute positioning of the button */
 }
 
-/* Stiluri pentru butonul de ștergere (x) */
 .delete-column-button {
-    align-self: flex-end;
-    /* Poziționăm butonul în partea din dreapta sus folosind flexbox */
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 18px;
     padding: 0;
-    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
 }
 
 /* Stilurile pentru butonul de adăugare a coloanelor adaptate la efectul specificat */
@@ -131,7 +124,8 @@ h2 {
 
 .option-button {
     margin-left: 90%;
-    background-color: rgba(239, 239, 239, 0); /* Set the alpha channel for transparency */
+    background-color: rgba(239, 239, 239, 0);
+    /* Set the alpha channel for transparency */
     font-weight: bold;
     border: white;
     cursor: pointer;
@@ -173,7 +167,7 @@ h2 {
 
 }
 
-.option-menu li:hover > ul {
+.option-menu li:hover>ul {
     display: block;
 }
 
@@ -181,11 +175,3 @@ h2 {
 .option-menu ul ul li {
     padding: 11px;
 }
-
-
-
-
-
-
-
-
