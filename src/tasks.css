@@ -29,13 +29,6 @@
     /* Reset margins */
 }
 
-/* Rest of tasks.css content stays unchanged */
-/* ...previous CSS styles... */
-
-.form-container {}
-
-
-
 .task-column {
     display: flex;
     flex-direction: column;
@@ -49,7 +42,6 @@
     /* Adaugăm position: relative pentru a avea un context pentru poziționarea absolută a butonului */
 }
 
-/* Stiluri pentru butonul de ștergere (x) */
 .delete-column-button {
     align-self: flex-end;
     /* Poziționăm butonul în partea din dreapta sus folosind flexbox */
@@ -58,7 +50,10 @@
     cursor: pointer;
     font-size: 18px;
     padding: 0;
-    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
 }
 
 /* Stilurile pentru butonul de adăugare a coloanelor adaptate la efectul specificat */
