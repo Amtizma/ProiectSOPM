@@ -3,11 +3,15 @@ import AddTaskForm from './AddTaskForm';
 import './tasks.css';
 import './tasks2.css';
 
-function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDeleteColumn, onMoveTask }) {
+const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDeleteColumn, onMoveTask }) => {
     const [activeColumn, setActiveColumn] = useState('');
     const [showOptionsMenu, setShowOptionsMenu] = useState({});
-    const [hoveredTask, setHoveredTask] = useState(null); // New state to track hovered task
-
+    const [hoveredTask, setHoveredTask] = useState(null);
+    const [showFilterOptions, setShowFilterOptions] = useState(false); // New state for filter options
+    const [filterType, setFilterType] = useState('default'); // Default filter type
+    const toggleFilterOptions = () => {
+        setShowFilterOptions(!showFilterOptions);
+    };
     const handleColumnHighlight = () => {
         setActiveColumn(category);
         setTimeout(() => setActiveColumn(''), 2000);
@@ -35,6 +39,21 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
             [taskId]: !prevState[taskId],
         }));
     };
+    const applyFilter = (task) => {
+        switch (filterType) {
+            case 'byName':
+                return task.name ? task.name.toLowerCase() : '';
+            case 'byPriority':
+                const priorityOrder = { HIGH: 1, MEDIUM: 2, LOW: 3 };
+                return String(task.priority ? priorityOrder[task.priority.toUpperCase()] : 4);
+            default:
+                return String(task.id); // Convert non-string values to strings
+        }
+    };
+
+
+    const filteredTasks = tasks.slice().sort((a, b) => applyFilter(a).localeCompare(applyFilter(b)));
+
 
     return (
         <div className={`task-column ${activeColumn === category ? 'active' : ''}`}>
@@ -43,17 +62,27 @@ function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                     x
                 </button>
             )}
+            <div className="filter-button" onClick={toggleFilterOptions}>
+                Filter By
+            </div>
+            {showFilterOptions && (
+                <div className="filter-options">
+                    <div className="dropdown-menu">
+                        <button onClick={() => setFilterType('default')}>By Default</button>
+                        <button onClick={() => setFilterType('byName')}>By Name</button>
+                        <button onClick={() => setFilterType('byPriority')}>By Priority</button>
+                    </div>
+                </div>
+            )}
             <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-            {Array.isArray(tasks) &&
-                tasks.map((task) => (
-
-                    <div
-                        key={task.id}
-                        className="task"
-                        style={{ backgroundColor: task.color }}
-                        onMouseEnter={() => setHoveredTask(task)}
-                        onMouseLeave={() => setHoveredTask(null)}
-                    >
+            {filteredTasks.map((task) => (
+                <div
+                    key={task.id}
+                    className="task"
+                    style={{ backgroundColor: task.color }}
+                    onMouseEnter={() => setHoveredTask(task)}
+                    onMouseLeave={() => setHoveredTask(null)}
+                >
                         <div className="nameandcircle">
                         {task.priority && (
                             <div className={`priority-circle ${task.priority.toLowerCase()}`}></div>
