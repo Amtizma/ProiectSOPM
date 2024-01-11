@@ -132,3 +132,12 @@ h2 {
     background: #c9c9c9;
     margin-right: 0;
 }
+
+.task-description {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.task:hover .task-description {
+    opacity: 1;
+}
