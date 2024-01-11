@@ -232,7 +232,16 @@ body {
 }
 
 
-
-
-
 }
+
+.close-button {
+  position: absolute;
+  top: -9.5%;
+  right: 39%;
+  background: none;
+  border: none;
+  font-size: 11px;
+  cursor: pointer;
+  color: #333; /* Adjust the color as needed */
+}
+

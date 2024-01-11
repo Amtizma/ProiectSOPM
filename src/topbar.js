@@ -63,8 +63,8 @@ const TopBar = () => {
                                     {showFilters && (
                                         <div className="dropdown-menu">
                                             <ul>
-                                                <li>By Deault</li>
-                                                <li>By ????</li>
+                                                <li>Deault</li>
+                                                
                                                 <li>By Category</li>
                                             </ul>
                                         </div>
@@ -81,7 +81,6 @@ const TopBar = () => {
                                         <div className="dropdown-menu">
                                             <ul>
                                                 <li onClick={toggleThemePopup}>Change Theme</li>
-                                                <li>Logout</li>
                                             </ul>
                                         </div>
                                     )}
@@ -95,15 +94,19 @@ const TopBar = () => {
 
                 </div>
                 {showFeedbackPopup && (
-                    <div className="feedback-popup">
-                        <div className="feedback-content">
-                            <h2>Give Feedback</h2>
-                            <p>What would you like to share with us?</p>
-                            <textarea placeholder="Write your feedback here..."/>
-                            <button onClick={toggleFeedbackPopup}>Send</button>
-                        </div>
-                    </div>
-                )}
+    <div className="feedback-popup">
+        <div className="feedback-content">
+            <button className="close-button" onClick={toggleFeedbackPopup}>
+                X
+            </button>
+            <h2>Give Feedback</h2>
+            <p>What would you like to share with us?</p>
+            <textarea placeholder="Write your feedback here..." />
+            <button onClick={toggleFeedbackPopup}>Send</button>
+        </div>
+    </div>
+)}
+
             </div>
         </div>
     );

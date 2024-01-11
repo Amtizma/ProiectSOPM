@@ -2,28 +2,38 @@ import React, { useState } from 'react';
 import AddTaskForm from './AddTaskForm';
 import './tasks.css';
 
-function TaskColumn({ category, tasks, onAddTask, onDeleteTask, onDeleteColumn }) {
+function TaskColumn({ category, tasks, categories, onAddTask, onDeleteTask, onDeleteColumn, onMoveTask }) {
     const [activeColumn, setActiveColumn] = useState('');
     const [showOptionsMenu, setShowOptionsMenu] = useState({});
+    const [selectedTaskId, setSelectedTaskId] = useState(null); // New state to store selected task ID
 
     const handleColumnHighlight = () => {
-        setActiveColumn(category); // Highlight the column
-        setTimeout(() => setActiveColumn(''), 2000); // Remove highlight after 2 seconds
+        setActiveColumn(category);
+        setTimeout(() => setActiveColumn(''), 2000);
     };
 
     const handleDeleteColumn = () => {
         onDeleteColumn(category);
     };
 
+    const handleMoveTask = (targetCategory) => {
+        if (selectedTaskId) {
+            onMoveTask(selectedTaskId, targetCategory);
+            toggleOptions(selectedTaskId);
+        }
+    };
+
     const handleDeleteTask = (taskId) => {
         onDeleteTask(category, taskId);
+        toggleOptions(taskId);
     };
 
     const toggleOptions = (taskId) => {
-        setShowOptionsMenu(prevState => ({
+        setShowOptionsMenu((prevState) => ({
             ...prevState,
-            [taskId]: !prevState[taskId]
+            [taskId]: !prevState[taskId],
         }));
+        setSelectedTaskId(taskId); // Save the selected task ID
     };
 
     return (
@@ -55,7 +65,7 @@ function TaskColumn({ category, tasks, onAddTask, onDeleteTask, onDeleteColumn }
                     </div>
                 </div>
             ))}
-            <div className='form-container'>
+            <div className="form-container">
                 <AddTaskForm onAddTask={onAddTask} category={category} onHighlight={handleColumnHighlight} />
             </div>
         </div>
