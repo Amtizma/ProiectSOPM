@@ -66,13 +66,11 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                 Filter By
             </div>
             {showFilterOptions && (
-                <div className="filter-options">
                     <div className="dropdown-menu">
-                        <button onClick={() => setFilterType('default')}>By Default</button>
-                        <button onClick={() => setFilterType('byName')}>By Name</button>
-                        <button onClick={() => setFilterType('byPriority')}>By Priority</button>
+                        <button className="filterButtons" onClick={() => setFilterType('default')}>Default</button>
+                        <button className="filterButtons" onClick={() => setFilterType('byName')}>Name</button>
+                        <button className="filterButtons" onClick={() => setFilterType('byPriority')}>Priority</button>
                     </div>
-                </div>
             )}
             <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
             {filteredTasks.map((task) => (
