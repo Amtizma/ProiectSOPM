@@ -4,7 +4,7 @@ import 'boxicons/css/boxicons.min.css';
 import logo from './images/logo.png';
 import ThemePopup from './ThemePopup';
 
-const TopBar = () => {
+function TopBar({ sortOrder, setSortOrder }) {
     const [showMenu, setShowMenu] = useState(false);
     const [showThemePopup, setShowThemePopup] = useState(false);
     const [showAuto, setShowAuto] = useState(false);
@@ -68,9 +68,9 @@ const TopBar = () => {
                                     {showFilters && (
                                         <div className="dropdown-menu">
                                             <ul>
-                                                <li>Deault</li>
-                                                
-                                                <li>By Category</li>
+                                                <li onClick={() => setSortOrder('default')}>By Default</li>
+                                                <li onClick={() => setSortOrder('byTasks')}>By No. of tasks</li>
+                                                <li onClick={() => setSortOrder('byName')}>By Column Name</li>
                                             </ul>
                                         </div>
                                     )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import CategoryPage from './Category';
 import './categories.css';
 import './App.css';
@@ -7,12 +7,13 @@ import TopBar from './topbar';
 import TaskPage from './AddTask';
 
 const App = () => {
+    const [sortOrder, setSortOrder] = useState('default');
     return (
         <div className="App">
-            <TopBar />
+            <TopBar sortOrder={sortOrder} setSortOrder={setSortOrder}/>
             <div className="categoriesAndTasks">
             <CategoryPage />
-                <TaskPage/>
+                <TaskPage sortOrder={sortOrder} setSortOrder={setSortOrder} />
             </div>
         </div>
 

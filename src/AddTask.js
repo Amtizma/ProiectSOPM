@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './tasks.css';
 import TaskColumn from './TaskColumn';
 import AddColumnPopup from './AddColumnPopup';
 
-function AddTask() {
+function AddTask({sortOrder, setSortOrder }) {
   const [tasks, setTasks] = useState({
     todo: [],
     ongoing: [],
@@ -64,34 +64,61 @@ function AddTask() {
     }));
   };
 
+  const [taskCounts, setTaskCounts] = useState({
+    todo: 0,
+    ongoing: 0,
+    done: 0,
+  });
+
+  // Update task counts whenever tasks change
+  useEffect(() => {
+    const newTaskCounts = Object.fromEntries(
+        Object.entries(tasks).map(([category, categoryTasks]) => [category, categoryTasks.length])
+    );
+    setTaskCounts(newTaskCounts);
+  }, [tasks]);
+
+  // ... (other code)
+
+  const getSortedColumns = () => {
+    if (sortOrder === 'byName') {
+      return Object.keys(tasks).sort();
+    } else if (sortOrder === 'default') {
+      return Object.keys(tasks);
+    } else if (sortOrder === 'byTasks') {
+      return Object.keys(taskCounts).sort((a, b) => taskCounts[b] - taskCounts[a]);
+    }
+  };
+
   return (
-    <div className="task-containers">
-      <div className="task-columns">
-        {Object.entries(tasks).map(([category, categoryTasks]) => (
-            <TaskColumn
-                key={category}
-                category={category}
-                tasks={categoryTasks}
-                categories={Object.keys(tasks)}
-                onAddTask={handleAddTask}
-                onDeleteTask={deleteTasks}
-                onDeleteColumn={deleteColumn}
-                onMoveTask={(taskId, targetCategory) => moveTask(category, taskId, targetCategory)}
-            />
-        ))}
-        <button onClick={addColumn} className="add-column-button">
-          Add a column
-        </button>
+      <div className="task-containers">
+        <div className="task-columns">
+          {getSortedColumns().map((category) => (
+              <TaskColumn
+                  key={category}
+                  category={category}
+                  tasks={tasks[category]}
+                  categories={Object.keys(tasks)}
+                  onAddTask={handleAddTask}
+                  onDeleteTask={deleteTasks}
+                  onDeleteColumn={deleteColumn}
+                  onMoveTask={(taskId, targetCategory) => moveTask(category, taskId, targetCategory)}
+              />
+          ))}
+          <button onClick={addColumn} className="add-column-button">
+            Add a column
+          </button>
+        </div>
+        {showAddColumnPopup && (
+            <div className="add-column-popup-overlay">
+              <div className="add-column-popup">
+                <AddColumnPopup onClose={() => setShowAddColumnPopup(false)} onAddColumn={handleAddColumn} />
+              </div>
+            </div>
+        )}
       </div>
-      {showAddColumnPopup && (
-         <div className="add-column-popup-overlay">
-         <div className="add-column-popup">
-           <AddColumnPopup onClose={() => setShowAddColumnPopup(false)} onAddColumn={handleAddColumn} />
-         </div>
-       </div>
-      )}
-    </div>
   );
 }
+
 
 export default AddTask;
