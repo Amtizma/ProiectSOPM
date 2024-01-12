@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import './topbar.css';
 import 'boxicons/css/boxicons.min.css';
 import logo from './images/logo.png';
@@ -13,21 +13,30 @@ function TopBar({ sortOrder, setSortOrder }) {
 
     const toggleAuto = () => {
         setShowAuto(!showAuto);
+        setShowFilters(false); // Close filters menu
+        setShowMenu(false); // Close the main menu
+        setShowThemePopup(false); // Close theme popup
     };
 
     const toggleFilters = () => {
         setShowFilters(!showFilters);
+        setShowAuto(false); // Close automation menu
+        setShowMenu(false); // Close the main menu
+        setShowThemePopup(false); // Close theme popup
     };
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
-        if (showThemePopup) {
-            setShowThemePopup(false);
-        }
+        setShowAuto(false); // Close automation menu
+        setShowFilters(false); // Close filters menu
+        setShowThemePopup(false); // Close theme popup
     };
 
     const toggleThemePopup = () => {
         setShowThemePopup(!showThemePopup);
+        setShowAuto(false); // Close automation menu
+        setShowFilters(false); // Close filters menu
+        setShowMenu(false); // Close the main menu
     };
 
     const toggleFeedbackPopup = () => {
@@ -41,6 +50,27 @@ function TopBar({ sortOrder, setSortOrder }) {
         window.location.href = mailtoLink;
         toggleFeedbackPopup(); // Close the feedback popup after sending
     };
+
+    const closeMenuOnOutsideClick = (event) => {
+        if (
+            !event.target.closest('.dropdown-menu') &&
+            !event.target.closest('.button') &&
+            !event.target.closest('.settings-button')
+        ) {
+            setShowAuto(false);
+            setShowFilters(false);
+            setShowMenu(false);
+            setShowThemePopup(false);
+        }
+    };
+
+    useEffect(() => {
+        document.body.addEventListener('click', closeMenuOnOutsideClick);
+
+        return () => {
+            document.body.removeEventListener('click', closeMenuOnOutsideClick);
+        };
+    }, []);
 
     return (
         <div>
@@ -63,34 +93,34 @@ function TopBar({ sortOrder, setSortOrder }) {
                             )}
                         </button>
 
-                                <button className={`button ${showFilters ? 'active' : ''}`} onClick={toggleFilters}>
-                                    Filters
-                                    {showFilters && (
-                                        <div className="dropdown-menu">
-                                            <ul>
-                                                <li onClick={() => setSortOrder('default')}>By Default</li>
-                                                <li onClick={() => setSortOrder('byTasks')}>By No. of tasks</li>
-                                                <li onClick={() => setSortOrder('byName')}>By Column Name</li>
-                                            </ul>
-                                        </div>
-                                    )}
-                                </button>
+                        <button className={`button ${showFilters ? 'active' : ''}`} onClick={toggleFilters}>
+                            Column Filters
+                            {showFilters && (
+                                <div className="dropdown-menu">
+                                    <ul>
+                                        <li onClick={() => setSortOrder('default')}>By Default</li>
+                                        <li onClick={() => setSortOrder('byTasks')}>By No. of tasks</li>
+                                        <li onClick={() => setSortOrder('byName')}>By Column Name</li>
+                                    </ul>
+                                </div>
+                            )}
+                        </button>
 
                         <button className="button">Share</button>
 
-                                <button
-                                    className={`button settings-button ${showMenu ? 'active' : ''}`}
-                                    onClick={toggleMenu}>
-                                    <i className='bx bx-dots-horizontal-rounded'></i>
-                                    {showMenu && (
-                                        <div className="dropdown-menu">
-                                            <ul>
-                                                <li onClick={toggleThemePopup}>Change Theme</li>
-                                            </ul>
-                                        </div>
-                                    )}
-                                </button>
-                            </div>
+                        <button
+                            className={`button settings-button ${showMenu ? 'active' : ''}`}
+                            onClick={toggleMenu}>
+                            <i className='bx bx-dots-horizontal-rounded'></i>
+                            {showMenu && (
+                                <div className="dropdown-menu">
+                                    <ul>
+                                        <li onClick={toggleThemePopup}>Change Theme</li>
+                                    </ul>
+                                </div>
+                            )}
+                        </button>
+                    </div>
                     {showThemePopup && (
                         <div className="theme-popup">
                             <ThemePopup onClose={toggleThemePopup} />
@@ -113,6 +143,6 @@ function TopBar({ sortOrder, setSortOrder }) {
             </div>
         </div>
     );
-};
+}
 
 export default TopBar;
