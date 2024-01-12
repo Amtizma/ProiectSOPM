@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import Dropdown from './Dropdown';
 import { cats } from './Category';
 import "./form.css";
+
 const AddTaskForm = ({ onAddTask, category }) => {
-  var handledCats = [];
-  for (let i = 0; i < cats.length; i++) {
-    handledCats[i] = cats[i].cat;
-  }
+  var handledCats = cats.map(cat => cat.cat);
 
   const [selectedColor, setSelectedColor] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -27,8 +25,8 @@ const AddTaskForm = ({ onAddTask, category }) => {
     if (task.trim() !== '') {
       onAddTask(task, category, selectedColor, name, priority);
       setTask('');
-      setPriority('')
-      setName('')
+      setPriority('');
+      setName('');
       setShowForm(false);
     }
   };
@@ -92,9 +90,7 @@ const AddTaskForm = ({ onAddTask, category }) => {
               Cancel
             </button>
           </div>
-
         </form>
-
       ) : (
         <button onClick={handleButtonClick} className="add-category-button">
           Add Task
@@ -102,8 +98,6 @@ const AddTaskForm = ({ onAddTask, category }) => {
       )}
     </div>
   );
-
-
 };
 
 export default AddTaskForm;
