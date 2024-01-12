@@ -72,26 +72,26 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
     };
 
     const toggleOptions = (taskId) => {
-    setOpenOptionMenu((prevTaskId) => (prevTaskId === taskId ? null : taskId));
-    setShowFilterOptions(false);
-};
-
-const closeOptionMenus = (event) => {
-    if (
-        !event.target.closest('.option-menu') &&
-        !event.target.closest('.option-button')
-    ) {
-        setOpenOptionMenu(null);
-    }
-};
-
-useEffect(() => {
-    document.body.addEventListener('click', closeOptionMenus);
-
-    return () => {
-        document.body.removeEventListener('click', closeOptionMenus);
+        setOpenOptionMenu((prevTaskId) => (prevTaskId === taskId ? null : taskId));
+        setShowFilterOptions(false);
     };
-}, []);
+
+    const closeOptionMenus = (event) => {
+        if (
+            !event.target.closest('.option-menu') &&
+            !event.target.closest('.option-button')
+        ) {
+            setOpenOptionMenu(null);
+        }
+    };
+
+    useEffect(() => {
+        document.body.addEventListener('click', closeOptionMenus);
+
+        return () => {
+            document.body.removeEventListener('click', closeOptionMenus);
+        };
+    }, []);
 
 
     const applyFilter = (task) => {
