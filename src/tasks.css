@@ -266,3 +266,36 @@ h2 {
     overflow-wrap: break-word;
     width: 40ch;
 }
+.filter-button {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 0%;
+    padding: 8px 16px;
+    width: 24%;
+    border: none;
+    background-color: rgb(201, 201, 201);
+    color: rgb(63, 63, 63);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    top: auto;
+    background-color: rgb(201, 201, 201);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+}
+.filterButtons{
+    margin: 5px;
+    padding: 4px 10px;
+    border: none;
+    background-color: rgb(201, 201, 201);
+    color: rgb(63, 63, 63);
+    border-radius: 4px;
+    cursor: pointer;
+}
+.filterButtons:hover {
+    background-color: #f0f0f0;
+}

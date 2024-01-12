@@ -27,7 +27,7 @@ const Dropdown = ({ options, onSelectColor }) => {
   return (
     <div className="dropdown">
       <div className="dropdown-header" onClick={toggling}>
-        {selectedOption || 'Select an option'}
+        {selectedOption || 'Select a category'}
         <span className={`arrow ${isOpen ? 'open' : ''}`}></span>
       </div>
       {isOpen && (

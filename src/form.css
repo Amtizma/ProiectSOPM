@@ -43,6 +43,9 @@
     background: linear-gradient(to right, #f39c12, var(--theme-color));
     color: #fff;
 }
+.addcancelbuttons{
+    margin-top: 10px;
+}
 
 .priority-button.high {
     background: linear-gradient(to right, red, var(--theme-color));
