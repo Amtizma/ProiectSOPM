@@ -33,7 +33,7 @@ const AddNewCategory = ({ addCategory }) => {
                         onChange={(event) => setNewCategoryName(event.target.value)}
                         maxLength={15}
                     />
-                    <button type="submit" className='confirm-add-category-button' style={{ backgroundColor: `var(--theme-color)` }}>Add new Category</button>
+                    <button type="submit" className='confirm-add-category-button' style={{ backgroundColor: `var(--theme-color)` }}>Add Category</button>
                     <button type="button" onClick={handleCancel} className='cancel-add-category-button'>X</button>
                 </form>
             ) : (
