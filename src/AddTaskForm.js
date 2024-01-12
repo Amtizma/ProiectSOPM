@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Dropdown from './Dropdown';
 import { cats } from './Category';
 import "./form.css";
-const AddTaskForm = ({ onAddTask, category }) => {
-  var handledCats = [];
-  for (let i = 0; i < cats.length; i++) {
-    handledCats[i] = cats[i].cat;
-  }
+
+const AddTaskForm = ({ onAddTask, category, editingTask, onDeleteTask, resetEditingTask }) => {
+  var handledCats = cats.map(cat => cat.cat);
 
   const [selectedColor, setSelectedColor] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -22,20 +20,39 @@ const AddTaskForm = ({ onAddTask, category }) => {
     setSelectedColor(color);
   };
 
+  useEffect(() => {
+    if (editingTask) {
+      setTask(editingTask.description || '');
+      setName(editingTask.name || '');
+      setPriority(editingTask.priority || '');
+      setSelectedColor(editingTask.color || null);
+      setShowForm(true);
+    }
+  }, [editingTask]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (task.trim() !== '') {
-      onAddTask(task, category, selectedColor, name, priority);
+      if (editingTask) {
+        onDeleteTask(category, editingTask.id);
+        onAddTask(task, category, selectedColor, name, priority, editingTask.id);
+        resetEditingTask();
+      }
+      else onAddTask(task, category, selectedColor, name, priority);
       setTask('');
-      setPriority('')
-      setName('')
+      setPriority('');
+      setName('');
       setShowForm(false);
     }
   };
 
   const handleCancel = () => {
-    setShowForm(false);
     setTask('');
+    setPriority('');
+    setName('');
+    setSelectedColor(null);
+    setShowForm(false);
+    resetEditingTask();
   };
 
   return (
@@ -48,14 +65,14 @@ const AddTaskForm = ({ onAddTask, category }) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter a task"
+              placeholder="Enter task title"
             />
             <input
               className="category-name-textbox"
               type="text"
               value={task}
               onChange={(e) => setTask(e.target.value)}
-              placeholder="Enter a task description"
+              placeholder="Enter task description"
             />
           </div>
           <div className="priority-options">
@@ -85,25 +102,21 @@ const AddTaskForm = ({ onAddTask, category }) => {
             <Dropdown options={handledCats} onSelectColor={handleSelectColor} />
           </div>
           <div className="action-buttons">
-            <button type="submit" className="confirm-add-category-button">
-              Add Task
+            <button type="submit" className="confirm-add-category-button" style={{ backgroundColor: `var(--theme-color)` }}>
+              Confirm
             </button>
             <button type="button" onClick={handleCancel} className="cancel-add-category-button">
               Cancel
             </button>
           </div>
-
         </form>
-
       ) : (
         <button onClick={handleButtonClick} className="add-category-button">
-          Add Task
+          Add new Task
         </button>
       )}
     </div>
   );
-
-
 };
 
 export default AddTaskForm;

@@ -9,6 +9,8 @@ function AddTask({sortOrder, setSortOrder }) {
     ongoing: [],
     done: []
   });
+  const [showForm, setShowForm] = useState(false);
+
   const moveTask = (sourceCategory, taskId, targetCategory) => {
     setTasks(prevTasks => {
       const updatedTasks = { ...prevTasks };
@@ -29,8 +31,12 @@ function AddTask({sortOrder, setSortOrder }) {
     });
   };
 
-  const handleAddTask = (taskDescription, category, color, name, priority) => {
-    const newTask = { id: Date.now(), description: taskDescription, color: color, name: name, priority: priority};
+  const handleAddTask = (taskDescription, category, color, name, priority, id = 0) => {
+    let newTask = { id: Date.now(), description: taskDescription, color: color, name: name, priority: priority};
+
+    if(id) {
+      newTask.id = id;
+    }
     setTasks(prevTasks => ({
       ...prevTasks,
       [category]: [...prevTasks[category], newTask]
@@ -43,6 +49,9 @@ function AddTask({sortOrder, setSortOrder }) {
       updatedTasks[category] = updatedTasks[category].filter(task => task.id !== taskId);
       return updatedTasks;
     });
+  };
+  const toggleForm = () => {
+    setShowForm(!showForm);
   };
   const deleteColumn = columnName => {
     const updatedTasks = { ...tasks };
@@ -78,8 +87,6 @@ function AddTask({sortOrder, setSortOrder }) {
     setTaskCounts(newTaskCounts);
   }, [tasks]);
 
-  // ... (other code)
-
   const getSortedColumns = () => {
     if (sortOrder === 'byName') {
       return Object.keys(tasks).sort();
@@ -103,10 +110,11 @@ function AddTask({sortOrder, setSortOrder }) {
                   onDeleteTask={deleteTasks}
                   onDeleteColumn={deleteColumn}
                   onMoveTask={(taskId, targetCategory) => moveTask(category, taskId, targetCategory)}
+                  setShowForm={toggleForm}
               />
           ))}
           <button onClick={addColumn} className="add-column-button">
-            Add a column
+            Add new column
           </button>
         </div>
         {showAddColumnPopup && (

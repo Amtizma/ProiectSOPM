@@ -38,6 +38,9 @@ const ThemePopup = ({ onClose }) => {
                     <button style={{ backgroundColor: '#89CFF0', color: 'white' }} className="theme-button" onClick={() => changeTheme('#89CFF0', 'https://media.newyorker.com/photos/5b5a414992497e4fd0017662/master/w_1920,c_limit/Sunday-Reading-Under-the-Sea.jpg')}>Under the sea</button>
                 </div>
                 <button onClick={onClose} className="close-button">Close</button>
+                <button onClick={onClose} className="close-button" style={{ backgroundColor: `var(--theme-color)` }}>
+                    Close
+                </button>
             </div>
         </div>
     );

@@ -22,7 +22,7 @@
     color: #fff;
     border: 3px solid #000;
     /* Add a border to make it more evident */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     /* Add a subtle box shadow for depth */
 }
 
