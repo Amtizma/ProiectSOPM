@@ -85,7 +85,7 @@ const AddTaskForm = ({ onAddTask, category }) => {
             <Dropdown options={handledCats} onSelectColor={handleSelectColor} />
           </div>
           <div className="action-buttons">
-            <button type="submit" className="confirm-add-category-button">
+            <button type="submit" className="confirm-add-category-button" style={{ backgroundColor: `var(--theme-color)` }}>
               Add Task
             </button>
             <button type="button" onClick={handleCancel} className="cancel-add-category-button">

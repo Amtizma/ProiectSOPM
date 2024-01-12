@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ThemePopup.css';
 
 const ThemePopup = ({ onClose }) => {
-    const [selectedTheme, setSelectedTheme] = useState('lightblue'); // Default theme
+  
 
     const changeTheme = (color1, color2) => {
         document.documentElement.style.setProperty('--theme-color', color2);
@@ -25,7 +25,6 @@ const ThemePopup = ({ onClose }) => {
         if (addTaskButton) {
             addTaskButton.style.backgroundColor = `var(--theme-color)`;
         }
-        setSelectedTheme(color2);
     };
 
     return (
@@ -46,7 +45,7 @@ const ThemePopup = ({ onClose }) => {
                         Christmas
                     </button>
                 </div>
-                <button onClick={onClose} className="close-button" style={{ backgroundColor: selectedTheme }}>
+                <button onClick={onClose} className="close-button" style={{ backgroundColor: `var(--theme-color)` }}>
                     Close
                 </button>
             </div>

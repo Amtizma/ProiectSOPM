@@ -20,7 +20,7 @@ const AddColumnPopup = ({ onClose, onAddColumn, themeColor }) => {
                 onChange={(e) => setColumnName(e.target.value)}
             />
             <div className="button-container">
-                <button onClick={handleAddColumn} style={{ backgroundColor: themeColor }}>Add</button>
+                <button onClick={handleAddColumn} style={{ backgroundColor: `var(--theme-color)` }}>Add</button>
                 <button onClick={onClose}>Cancel</button>
             </div>
         </div>
