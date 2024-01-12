@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Dropdown from './Dropdown';
 import { cats } from './Category';
 import "./form.css";
 
-const AddTaskForm = ({ onAddTask, category }) => {
+const AddTaskForm = ({ onAddTask, category, editingTask, onDeleteTask, resetEditingTask }) => {
   var handledCats = cats.map(cat => cat.cat);
 
   const [selectedColor, setSelectedColor] = useState(null);
@@ -20,10 +20,25 @@ const AddTaskForm = ({ onAddTask, category }) => {
     setSelectedColor(color);
   };
 
+  useEffect(() => {
+    if (editingTask) {
+      setTask(editingTask.description || '');
+      setName(editingTask.name || '');
+      setPriority(editingTask.priority || '');
+      setSelectedColor(editingTask.color || null);
+      setShowForm(true);
+    }
+  }, [editingTask]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (task.trim() !== '') {
-      onAddTask(task, category, selectedColor, name, priority);
+      if (editingTask) {
+        onDeleteTask(category, editingTask.id);
+        onAddTask(task, category, selectedColor, name, priority, editingTask.id);
+        resetEditingTask();
+      }
+      else onAddTask(task, category, selectedColor, name, priority);
       setTask('');
       setPriority('');
       setName('');
@@ -32,8 +47,12 @@ const AddTaskForm = ({ onAddTask, category }) => {
   };
 
   const handleCancel = () => {
-    setShowForm(false);
     setTask('');
+    setPriority('');
+    setName('');
+    setSelectedColor(null);
+    setShowForm(false);
+    resetEditingTask();
   };
 
   return (
@@ -84,7 +103,7 @@ const AddTaskForm = ({ onAddTask, category }) => {
           </div>
           <div className="action-buttons">
             <button type="submit" className="confirm-add-category-button" style={{ backgroundColor: `var(--theme-color)` }}>
-              Add Task
+              Confirm
             </button>
             <button type="button" onClick={handleCancel} className="cancel-add-category-button">
               Cancel

@@ -1,12 +1,12 @@
 /* For laptops/desktops */
 body {
-  background: lightblue;
+  background: rgb(193, 227, 239);
   margin: 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .top-bar {
-  background-color: #eef9f0;
+  background-color: #c1dddf;
   padding: 20px;
   display: flex;
   justify-content: flex-end;
