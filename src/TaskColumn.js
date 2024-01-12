@@ -97,6 +97,8 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                     style={{ backgroundColor: task.color }}
                     onMouseEnter={() => setHoveredTask(task)}
                     onMouseLeave={() => setHoveredTask(null)}
+
+                    
                 >
                         <div className="nameandcircle">
                             {task.priority && (
