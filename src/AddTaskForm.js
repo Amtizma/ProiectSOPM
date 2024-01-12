@@ -46,14 +46,14 @@ const AddTaskForm = ({ onAddTask, category }) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter a task"
+              placeholder="Enter task title"
             />
             <input
               className="category-name-textbox"
               type="text"
               value={task}
               onChange={(e) => setTask(e.target.value)}
-              placeholder="Enter a task description"
+              placeholder="Enter task description"
             />
           </div>
           <div className="priority-options">
@@ -93,7 +93,7 @@ const AddTaskForm = ({ onAddTask, category }) => {
         </form>
       ) : (
         <button onClick={handleButtonClick} className="add-category-button">
-          Add Task
+          Add new Task
         </button>
       )}
     </div>

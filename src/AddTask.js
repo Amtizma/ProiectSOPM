@@ -106,7 +106,7 @@ function AddTask({sortOrder, setSortOrder }) {
               />
           ))}
           <button onClick={addColumn} className="add-column-button">
-            Add a column
+            Add new column
           </button>
         </div>
         {showAddColumnPopup && (
