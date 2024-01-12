@@ -10,6 +10,7 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
     const [showFilterOptions, setShowFilterOptions] = useState(false);
     const [filterType, setFilterType] = useState('default');
     const [editingTask, setEditingTask] = useState(null);
+    const [isFilterButtonClicked, setIsFilterButtonClicked] = useState(false);
 
     const resetEditingTask = () => {
         setEditingTask(null);
@@ -26,6 +27,7 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
     const toggleFilterOptions = () => {
         setShowFilterOptions((prevShowFilterOptions) => !prevShowFilterOptions);
         setOpenOptionMenu(null);
+        setIsFilterButtonClicked((prevIsClicked) => !prevIsClicked);
     };
 
     const closeMenusOnOutsideClick = (event) => {
@@ -115,11 +117,14 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                     x
                 </button>
             )}
-            <div className="filter-button" onClick={toggleFilterOptions}>
+            <div
+                className={`filter-button ${isFilterButtonClicked ? 'clicked' : ''}`}
+                onClick={toggleFilterOptions}
+            >
                 Filter Tasks by
             </div>
             {showFilterOptions && (
-                <div className="dropdown-menu">
+                <div className="dropdown-menu" >
                     <button className="filterButtons" onClick={() => setFilterType('default')}>
                         Default
                     </button>

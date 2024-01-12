@@ -151,17 +151,19 @@ h2 {
     background-color: white;
     position: relative;
     list-style-type: none;
-    
+
 }
 
 .option-menu li:hover {
     background-color: #f0f0f0;
 }
+
 .option-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 .option-menu ul ul {
     display: none;
     border: 1px solid #ccc;
@@ -170,7 +172,7 @@ h2 {
     top: 0;
     padding-left: 0;
     transition-delay: 1s;
-   
+
 }
 
 .option-menu li:hover>ul {
@@ -267,6 +269,7 @@ h2 {
     overflow-wrap: break-word;
     width: 40ch;
 }
+
 .task-containers {
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -420,17 +423,19 @@ h2 {
     background-color: white;
     position: relative;
     list-style-type: none;
-    
+
 }
 
 .option-menu li:hover {
     background-color: #f0f0f0;
 }
+
 .option-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 .option-menu ul ul {
     display: none;
     border: 1px solid #ccc;
@@ -439,7 +444,7 @@ h2 {
     top: 0;
     padding-left: 0;
     transition-delay: 1s;
-   
+
 }
 
 .option-menu li:hover>ul {
@@ -536,25 +541,23 @@ h2 {
     overflow-wrap: break-word;
     width: 40ch;
 }
+
 .filter-button {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-left: 0%;
     padding: 8px 16px;
-    min-width: 50px; /* Set a minimum width */
-    width: auto;
-    transition: min-width 0.3s ease, width 0.3s ease; /* Add transitions for smooth resizing */
+    width: 34%;
     border: none;
     background-color: rgb(201, 201, 201);
     color: rgb(63, 63, 63);
     border-radius: 4px;
     cursor: pointer;
-    display: flex;
-    align-items: center; /* Align text and arrow vertically */
+    transition: width 0.2s ease;
+
 }
 
-.filter-button.active {
-    min-width: 150px; /* Set a larger width when active */
-    width: 100%; /* Set full width when active */
+.filter-button.clicked {
+    width: 70%;
 }
 
 .dropdown-menu {
@@ -565,21 +568,27 @@ h2 {
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
+    /* Change to 'column' for vertical alignment */
     position: absolute;
+    /* Set to 'absolute' for proper positioning */
     padding: 8px 0;
-    border-radius: 4px;
+    /* Add padding to the dropdown menu */
+    z-index: 1;
+
 }
 
 .filterButtons {
     margin: 5px;
     padding: 8px 16px;
+    /* Adjust padding for better appearance */
     border: none;
     background-color: rgb(201, 201, 201);
     color: rgb(63, 63, 63);
     border-radius: 4px;
     cursor: pointer;
     display: flex;
-    align-items: center; /* Align text and arrow vertically */
+    align-items: center;
+    /* Align text and arrow vertically */
 }
 
 .filterButtons:hover {
