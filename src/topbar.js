@@ -275,7 +275,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
                 {showFeedbackPopup && (
                     <div className="feedback-popup">
                         <div className="feedback-content">
-                            <button className="close-button" onClick={toggleFeedbackPopup}>
+                            <button className="close-buttonn" onClick={toggleFeedbackPopup}>
                                 X
                             </button>
                             <h2>Give Feedback</h2>
