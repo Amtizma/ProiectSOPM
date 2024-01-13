@@ -236,7 +236,6 @@ body {
 
 
 }
-
 .close-buttonn {
   background: none;
   border: none;
@@ -245,6 +244,17 @@ body {
   color: #333;
   margin-left: 85%;
 
+  /* Adjust the color as needed */
+}
+.close-button {
+  position: absolute;
+  top: -9.5%;
+  right: 39%;
+  background: none;
+  border: none;
+  font-size: 11px;
+  cursor: pointer;
+  color: #333;
   /* Adjust the color as needed */
 }
 /* Feedback Popup */

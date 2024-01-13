@@ -27,21 +27,30 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
     };
     const toggleAuto = () => {
         setShowAuto(!showAuto);
+        setShowFilters(false); // Close filters menu
+        setShowMenu(false); // Close the main menu
+        setShowThemePopup(false); // Close theme popup
     };
 
     const toggleFilters = () => {
         setShowFilters(!showFilters);
+        setShowAuto(false); // Close automation menu
+        setShowMenu(false); // Close the main menu
+        setShowThemePopup(false); // Close theme popup
     };
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
-        if (showThemePopup) {
-            setShowThemePopup(false);
-        }
+        setShowAuto(false); // Close automation menu
+        setShowFilters(false); // Close filters menu
+        setShowThemePopup(false); // Close theme popup
     };
 
     const toggleThemePopup = () => {
         setShowThemePopup(!showThemePopup);
+        setShowAuto(false); // Close automation menu
+        setShowFilters(false); // Close filters menu
+        setShowMenu(false); // Close the main menu
     };
 
     const toggleFeedbackPopup = () => {
@@ -125,6 +134,27 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
         { label: 'Days', value: 'days' },
     ];
 
+    const closeMenuOnOutsideClick = (event) => {
+        if (
+            !event.target.closest('.dropdown-menu') &&
+            !event.target.closest('.button') &&
+            !event.target.closest('.settings-button')
+        ) {
+            setShowAuto(false);
+            setShowFilters(false);
+            setShowMenu(false);
+            setShowThemePopup(false);
+        }
+    };
+
+    useEffect(() => {
+        document.body.addEventListener('click', closeMenuOnOutsideClick);
+
+        return () => {
+            document.body.removeEventListener('click', closeMenuOnOutsideClick);
+        };
+    }, []);
+
     return (
         <div>
             <div className="top-bar">
@@ -147,11 +177,11 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
                         </button>
 
                         <button className={`button ${showFilters ? 'active' : ''}`} onClick={toggleFilters}>
-                            Filters
+                            Column Filters
                             {showFilters && (
                                 <div className="dropdown-menu">
                                     <ul>
-                                        <li onClick={() => setSortOrder('default')}>Default</li>
+                                        <li onClick={() => setSortOrder('default')}>By Default</li>
                                         <li onClick={() => setSortOrder('byTasks')}>By No. of tasks</li>
                                         <li onClick={() => setSortOrder('byName')}>By Column Name</li>
                                     </ul>
@@ -183,7 +213,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
                 {showFeedbackPopup && (
                     <div className="feedback-popup">
                         <div className="feedback-content">
-                            <button className="close-buttonn" onClick={toggleFeedbackPopup}>
+                            <button className="close-button" onClick={toggleFeedbackPopup}>
                                 X
                             </button>
                             <h2>Give Feedback</h2>
