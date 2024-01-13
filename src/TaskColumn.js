@@ -21,8 +21,6 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
             setShowForm(true);
         }
     };
-
-
     const toggleFilterOptions = () => {
         setShowFilterOptions(!showFilterOptions);
     };
