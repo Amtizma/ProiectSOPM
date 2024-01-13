@@ -42,6 +42,7 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
         ) {
             setOpenOptionMenu(null);
             setShowFilterOptions(false);
+            setIsFilterButtonClicked(false);
         }
     };
 
@@ -51,7 +52,7 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
         return () => {
             document.body.removeEventListener('click', closeMenusOnOutsideClick);
         };
-    }, []);
+    }, [isFilterButtonClicked]);
 
     const handleColumnHighlight = () => {
         setActiveColumn(category);
@@ -148,7 +149,7 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                     onMouseEnter={() => setHoveredTask(task)}
                     onMouseLeave={() => setHoveredTask(null)}
 
-                    
+
                 >
                     <div className="nameandcircle">
                         {task.priority && (
