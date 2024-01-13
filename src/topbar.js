@@ -51,11 +51,6 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
     const [selectedCategory, setSelectedCategory] = useState("");
 
 
-    useEffect(() => {
-        console.log('tasks:', tasks);
-        console.log('categories:', categories);
-    }, [tasks, categories]);
-
     const toggleRulesPopup = () => {
         setShowRulesPopup(!showRulesPopup);
         onUpdateLists(); // Call the function to update lists in the App component
@@ -65,6 +60,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
         setShowFilters(false); // Close filters menu
         setShowMenu(false); // Close the main menu
         setShowThemePopup(false); // Close theme popup
+        setShowShareMenu(false);
     };
 
     const toggleFilters = () => {
@@ -72,18 +68,21 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
         setShowAuto(false); // Close automation menu
         setShowMenu(false); // Close the main menu
         setShowThemePopup(false); // Close theme popup
+        setShowShareMenu(false);
     };
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
         setShowAuto(false); // Close automation menu
         setShowFilters(false); // Close filters menu
+        setShowShareMenu(false);
     };
 
     const toggleThemePopup = () => {
         setShowThemePopup(!showThemePopup);
         setShowAuto(false); // Close automation menu
         setShowFilters(false); // Close filters menu
+        setShowShareMenu(false);
     };
 
     const toggleFeedbackPopup = () => {
@@ -92,6 +91,10 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
 
     const toggleShareMenu = () => {
         setShowShareMenu(!showShareMenu);
+        setShowAuto(false); // Close automation menu
+        setShowMenu(false); // Close the main menu
+        setShowThemePopup(false); // Close theme popup
+        setShowFilters(false); // Close filters menu
     };
 
     const sendFeedback = () => {
@@ -194,7 +197,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
     }, []);
    
     const saveAsPDF = () => {
-        const appElement = document.getElementsByClassName('top-bar')[0];
+        const appElement = document.getElementsByClassName('App')[0];
         const pdfOptions = {
             margin: 10,
             filename: 'your_document.pdf',
@@ -246,7 +249,6 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
           {showShareMenu && (
             <div className="dropdown-menu">
               <ul>
-                <li onClick={() => setSaveAsPdfClicked(true)}>Save as PDF</li>
                 <li onClick={savePNG}>Save as PNG</li>
               </ul>
             </div>
