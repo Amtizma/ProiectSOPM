@@ -278,7 +278,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists }) {
                         <h2>Give Feedback</h2>
                         <p>What would you like to share with us?</p>
                         <textarea id="feedback-textarea" placeholder="Write your feedback here..." />
-                        <button onClick={sendFeedback}>Send</button>
+                        <button onClick={sendFeedback} style={{ backgroundColor: `var(--theme-color)` }}>Send</button>
                     </div>
                 </div>
             )}
@@ -345,7 +345,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists }) {
                                 ))}
                             </select>
                             <br />
-                            <button onClick={requestNotificationPermission}>Set Reminder</button>
+                            <button onClick={requestNotificationPermission} style={{ backgroundColor: `var(--theme-color)` }}>Set Reminder</button>
                         </form>
                     </div>
                 </div>
