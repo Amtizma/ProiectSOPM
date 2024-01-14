@@ -5,7 +5,6 @@ import './App.css';
 import './topbar.css';
 import TopBar from './topbar';
 import TaskPage from './AddTask';
-import { useEffect } from 'react';
 import { initKeycloak, getKeycloakInstance } from './keycloak';
 import { cats } from "./Category";
 import { tsks } from "./AddTask";
