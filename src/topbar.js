@@ -64,7 +64,6 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists }) {
         setShowAuto(false);
         setShowFilters(false);
         setShowShareMenu(false);
-        setShowThemePopup(false);
     };
 
     const toggleThemePopup = () => {
