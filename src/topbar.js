@@ -47,7 +47,7 @@ function TopBar({ sortOrder, setSortOrder }) {
             <div className="top-bar">
                 <div className="left-section">
                     <img src={logo} alt='To Do' className='logo' />
-                    <h1 className="charter-title">Charter for</h1>
+                    <h1 className="charter-title" id="charter-title">Charter for</h1>
                 </div>
                 <div className="right-section">
                     <div className="buttons">
