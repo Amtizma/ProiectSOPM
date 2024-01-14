@@ -243,11 +243,6 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists }) {
                             )}
                         </button>
 
-                        <button
-                            className={`button ${showShareMenu ? 'active' : ''}`}
-                            onClick={logoutFunc}>
-                            Logout
-                        </button>
 
                         <button
                             className={`button settings-button ${showMenu ? 'active' : ''}`}
@@ -257,6 +252,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists }) {
                                 <div className="dropdown-menu">
                                     <ul>
                                         <li onClick={toggleThemePopup}>Change Theme</li>
+                                        <li onClick={logoutFunc}>Logout</li>
                                     </ul>
                                 </div>
                             )}
