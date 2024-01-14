@@ -3,6 +3,7 @@ import './tasks.css';
 import TaskColumn from './TaskColumn';
 import AddColumnPopup from './AddColumnPopup';
 
+let tsks = [];
 function AddTask({sortOrder, setSortOrder }) {
   const [tasks, setTasks] = useState({
     todo: [],
@@ -85,6 +86,10 @@ function AddTask({sortOrder, setSortOrder }) {
         Object.entries(tasks).map(([category, categoryTasks]) => [category, categoryTasks.length])
     );
     setTaskCounts(newTaskCounts);
+    tsks = Object.fromEntries(
+        Object.entries(tasks).map(([category, categoryTasks]) => [category, categoryTasks.map(task => task.name)])
+    );
+    console.log(tsks);
   }, [tasks]);
 
   const getSortedColumns = () => {
@@ -127,6 +132,5 @@ function AddTask({sortOrder, setSortOrder }) {
       </div>
   );
 }
-
-
+export {tsks};
 export default AddTask;

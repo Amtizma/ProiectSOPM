@@ -19,7 +19,6 @@ const AddTaskForm = ({ onAddTask, category, editingTask, onDeleteTask, resetEdit
   const handleSelectColor = (color) => {
     setSelectedColor(color);
   };
-
   useEffect(() => {
     if (editingTask) {
       setTask(editingTask.description || '');
@@ -66,6 +65,7 @@ const AddTaskForm = ({ onAddTask, category, editingTask, onDeleteTask, resetEdit
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter task title"
+              required
             />
             <input
               className="category-name-textbox"
@@ -73,6 +73,7 @@ const AddTaskForm = ({ onAddTask, category, editingTask, onDeleteTask, resetEdit
               value={task}
               onChange={(e) => setTask(e.target.value)}
               placeholder="Enter task description"
+              required
             />
           </div>
           <div className="priority-options">

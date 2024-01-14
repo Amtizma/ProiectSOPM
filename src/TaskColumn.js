@@ -5,11 +5,12 @@ import './tasks2.css';
 
 const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDeleteColumn, onMoveTask, onEditTask, setShowForm }) => {
     const [activeColumn, setActiveColumn] = useState('');
-    const [showOptionsMenu, setShowOptionsMenu] = useState({});
+    const [openOptionMenu, setOpenOptionMenu] = useState(null);
     const [hoveredTask, setHoveredTask] = useState(null);
-    const [showFilterOptions, setShowFilterOptions] = useState(false); // New state for filter options
-    const [filterType, setFilterType] = useState('default'); // Default filter type
-    const [editingTask, setEditingTask] = useState(null); // new state for editing task
+    const [showFilterOptions, setShowFilterOptions] = useState(false);
+    const [filterType, setFilterType] = useState('default');
+    const [editingTask, setEditingTask] = useState(null);
+    const [isFilterButtonClicked, setIsFilterButtonClicked] = useState(false);
 
     const resetEditingTask = () => {
         setEditingTask(null);
@@ -24,27 +25,34 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
 
 
     const toggleFilterOptions = () => {
-        setShowFilterOptions(!showFilterOptions);
+        setShowFilterOptions((prevShowFilterOptions) => !prevShowFilterOptions);
+        setOpenOptionMenu(null);
+        setIsFilterButtonClicked((prevIsClicked) => !prevIsClicked);
     };
     const buttonRef = useRef(null);
 
-    useEffect(() => {
-        const closeMenuOnOutsideClick = (event) => {
-            if (
-                !event.target.closest('.option-menu') &&
-                !event.target.closest('.option-button') &&
-                !event.target.closest('.task-column-button')
-            ) {
-                setShowOptionsMenu(null);
-            }
-        };
+    const closeMenusOnOutsideClick = (event) => {
+        if (
+            !event.target.closest('.option-menu') &&
+            !event.target.closest('.option-button') &&
+            !event.target.closest('.task-column-button') &&
+            !event.target.closest('.filter-button') &&
+            !event.target.closest('.dropdown-menu') &&
+            !event.target.closest('.filterButtons')
+        ) {
+            setOpenOptionMenu(null);
+            setShowFilterOptions(false);
+            setIsFilterButtonClicked(false);
+        }
+    };
 
-        document.body.addEventListener('click', closeMenuOnOutsideClick);
+    useEffect(() => {
+        document.body.addEventListener('click', closeMenusOnOutsideClick);
 
         return () => {
-            document.body.removeEventListener('click', closeMenuOnOutsideClick);
+            document.body.removeEventListener('click', closeMenusOnOutsideClick);
         };
-    }, []);
+    }, [isFilterButtonClicked]);
 
     const handleColumnHighlight = () => {
         setActiveColumn(category);
@@ -58,18 +66,38 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
     const handleMoveTask = (targetCategory) => {
         if (hoveredTask) {
             onMoveTask(hoveredTask.id, targetCategory);
-            toggleOptions(hoveredTask.id);
+            setOpenOptionMenu(null);
         }
     };
 
     const handleDeleteTask = (taskId) => {
         onDeleteTask(category, taskId);
-        toggleOptions(taskId);
+        setOpenOptionMenu(null);
     };
 
     const toggleOptions = (taskId) => {
-        setShowOptionsMenu((prevTaskId) => (prevTaskId === taskId ? null : taskId));
+        setOpenOptionMenu((prevTaskId) => (prevTaskId === taskId ? null : taskId));
+        setShowFilterOptions(false);
     };
+
+    const closeOptionMenus = (event) => {
+        if (
+            !event.target.closest('.option-menu') &&
+            !event.target.closest('.option-button')
+        ) {
+            setOpenOptionMenu(null);
+        }
+    };
+
+    useEffect(() => {
+        document.body.addEventListener('click', closeOptionMenus);
+
+        return () => {
+            document.body.removeEventListener('click', closeOptionMenus);
+        };
+    }, []);
+
+
     const applyFilter = (task) => {
         switch (filterType) {
             case 'byName':
@@ -78,7 +106,7 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                 const priorityOrder = { HIGH: 1, MEDIUM: 2, LOW: 3 };
                 return String(task.priority ? priorityOrder[task.priority.toUpperCase()] : 4);
             default:
-                return String(task.id); // Convert non-string values to strings
+                return String(task.id);
         }
     };
 
@@ -93,14 +121,23 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                     x
                 </button>
             )}
-            <div className="filter-button" onClick={toggleFilterOptions}>
-                Filter By
+            <div
+                className={`filter-button ${isFilterButtonClicked ? 'clicked' : ''}`}
+                onClick={toggleFilterOptions}
+            >
+                Filter Tasks by
             </div>
             {showFilterOptions && (
-                <div className="dropdown-menu">
-                    <button className="filterButtons" onClick={() => setFilterType('default')}>Default</button>
-                    <button className="filterButtons" onClick={() => setFilterType('byName')}>Name</button>
-                    <button className="filterButtons" onClick={() => setFilterType('byPriority')}>Priority</button>
+                <div className="dropdown-menu" >
+                    <button className="filterButtons" onClick={() => setFilterType('default')}>
+                        Default
+                    </button>
+                    <button className="filterButtons" onClick={() => setFilterType('byName')}>
+                        Name
+                    </button>
+                    <button className="filterButtons" onClick={() => setFilterType('byPriority')}>
+                        Priority
+                    </button>
                 </div>
             )}
             <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
@@ -112,7 +149,7 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                     onMouseEnter={() => setHoveredTask(task)}
                     onMouseLeave={() => setHoveredTask(null)}
 
-                    
+
                 >
                     <div className="nameandcircle">
                         {task.priority && (
@@ -128,21 +165,17 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                         </button>
                     </div>
                     <div className="task-options">
-                        {showOptionsMenu === task.id && (
+                        {openOptionMenu === task.id && (
                             <div className="option-menu">
                                 <ul>
-                                    <li onClick={() => handleDeleteTask(task.id)}>
-                                        Remove
-                                    </li>
+                                    <li onClick={() => handleDeleteTask(task.id)}>Remove</li>
                                     <li>
                                         Move to
                                         <ul>
                                             {categories.map((targetCategory) => (
                                                 <li
                                                     key={targetCategory}
-                                                    onClick={() =>
-                                                        handleMoveTask(targetCategory)
-                                                    }
+                                                    onClick={() => handleMoveTask(targetCategory)}
                                                 >
                                                     {targetCategory.charAt(0).toUpperCase() +
                                                         targetCategory.slice(1)}
@@ -160,15 +193,21 @@ const TaskColumn = ({ category, tasks, categories, onAddTask, onDeleteTask, onDe
                             <div className="task-date">
                                 {new Date(task.id).toLocaleString('en-GB')}
                             </div>
-                        <div className="task-description">
-                            {task.description}
-                        </div>
+                            <div className="task-description">{task.description}</div>
                         </div>
                     )}
                 </div>
             ))}
             <div className="form-container">
-                <AddTaskForm onAddTask={onAddTask} category={category} onHighlight={handleColumnHighlight} editingTask={editingTask} onDeleteTask={onDeleteTask} setShowForm={setShowForm} resetEditingTask={resetEditingTask} />
+                <AddTaskForm
+                    onAddTask={onAddTask}
+                    category={category}
+                    onHighlight={handleColumnHighlight}
+                    editingTask={editingTask}
+                    onDeleteTask={onDeleteTask}
+                    setShowForm={setShowForm}
+                    resetEditingTask={resetEditingTask}
+                />
             </div>
         </div>
     );
