@@ -9,6 +9,9 @@ import { initKeycloak, getKeycloakInstance } from './keycloak';
 import { cats } from "./Category";
 import { tsks } from "./AddTask";
 
+function logoutFunc() {
+  alert("Logout.");
+}
 
 const App = () => {
     const [authenticated, setAuthenticated] = useState(false);
@@ -36,7 +39,7 @@ const App = () => {
       init();
     }, []);
   
-    const logout = async () => {
+    logoutFunc = async () => {
       try {
         await getKeycloakInstance().logout();
       } catch (error) {
@@ -74,4 +77,5 @@ const App = () => {
     );
 };
 
+export { logoutFunc };
 export default App;

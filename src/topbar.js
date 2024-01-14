@@ -5,6 +5,7 @@ import './topbar.css';
 import 'boxicons/css/boxicons.min.css';
 import logo from './images/logo.png';
 import ThemePopup from './ThemePopup';
+import { logoutFunc } from './App';
 
 function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists }) {
     const [showMenu, setShowMenu] = useState(false);
@@ -241,6 +242,12 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists }) {
                                     </ul>
                                 </div>
                             )}
+                        </button>
+
+                        <button
+                            className={`button ${showShareMenu ? 'active' : ''}`}
+                            onClick={logoutFunc}>
+                            Logout
                         </button>
 
                         <button
