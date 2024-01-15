@@ -78,7 +78,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
         setShowMenu(!showMenu);
         setShowAuto(false); // Close automation menu
         setShowFilters(false); // Close filters menu
-        setShowThemePopup(false); // Close theme popup
+       
     };
 
     const toggleThemePopup = () => {
@@ -268,18 +268,7 @@ function TopBar({ sortOrder, setSortOrder, tasks, categories, onUpdateLists  }) 
                             )}
                         </button>
                     </div>
-                        <button
-                            className={`button settings-button ${showMenu ? 'active' : ''}`}
-                            onClick={toggleMenu}>
-                            <i className='bx bx-dots-horizontal-rounded'></i>
-                            {showMenu && (
-                                <div className="dropdown-menu">
-                                    <ul>
-                                        <li onClick={toggleThemePopup}>Change Theme</li>
-                                    </ul>
-                                </div>
-                            )}
-                        </button>
+                        
                     </div>
                     {showThemePopup && (
                         <div className="theme-popup">
