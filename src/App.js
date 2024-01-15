@@ -5,11 +5,48 @@ import './App.css';
 import './topbar.css';
 import TopBar from './topbar';
 import TaskPage from './AddTask';
+import { initKeycloak, getKeycloakInstance } from './keycloak';
 import { cats } from "./Category";
 import { tsks } from "./AddTask";
 
+function logoutFunc() {
+  alert("Logout.");
+}
 
 const App = () => {
+    const [authenticated, setAuthenticated] = useState(false);
+    const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(() => {
+      const init = async () => {
+        try {
+          await initKeycloak();
+          const authenticated = await getKeycloakInstance().authenticated;
+          setAuthenticated(authenticated);
+  
+          if (authenticated) {
+            // Get user information
+            const userInfo = await getKeycloakInstance().loadUserInfo();
+            setUserInfo(userInfo);
+            const userName = userInfo["given_name"];
+            document.getElementById("charter-title").innerText = "Charter for " + userName;
+          }
+        } catch (error) {
+          console.error('Keycloak initialization failed:', error);
+        }
+      };
+  
+      init();
+    }, []);
+  
+    logoutFunc = async () => {
+      try {
+        await getKeycloakInstance().logout();
+      } catch (error) {
+        console.error('Keycloak logout failed:', error);
+      }
+    };
+
     const [sortOrder, setSortOrder] = useState('default');
     const [handledCats, setHandledCats] = useState([]);
     const [handledTasks, setHandledTasks] = useState([]);
@@ -40,4 +77,5 @@ const App = () => {
     );
 };
 
+export { logoutFunc };
 export default App;
